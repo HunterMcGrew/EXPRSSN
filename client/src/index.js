@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './pages/css/reset.css';
-import M from "materialize-css"
+import 'bulma/css/bulma.min.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

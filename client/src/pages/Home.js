@@ -6,17 +6,6 @@ import './css/Home.css';
 
 // if clicked on a piece or collection without being signed in, push to login/signup page
 
-const styles = {
-  cardContainer: {
-    display: 'flex',
-    justifyContent: 'space-between',
-  },
-  card: {
-    display: 'flex',
-    flexDirection: 'row',
-  },
-};
-
 function Home() {
   return (
     <div className="container" id="">
@@ -24,34 +13,25 @@ function Home() {
       <div className="row" id=""></div>
 
       {/* Gallery */}
-      <div className="row" id="">
-        <div className="card col s1 m3 l3" id="">
+      <section className="row m3" id="">
+        <div className="card col s1 m4 l4" id="">
           <div className="card-title">
             <h5>Artist</h5>
           </div>
-          <div className="card-content" id="">
+          <div className="card-image" id="">
             <img className="image" src={test} alt="test"></img>
           </div>
         </div>
 
-        <div className="card col s1 m3 l3" id="">
+        <div className="card col s1 m4 l4" id="">
           <div className="card-title">
             <h5>Artist</h5>
           </div>
-          <div className="card-content" id="">
+          <div className="card-image" id="">
             <img className="image" src={test} alt="test"></img>
           </div>
         </div>
-
-        <div className="card col s1 m3 l3" id="">
-          <div className="card-title">
-            <h5>Artist</h5>
-          </div>
-          <div className="card-content" id="">
-            <img className="image" src={test} alt="test"></img>
-          </div>
-        </div>
-      </div>
+      </section>
     </div>
   );
 }
