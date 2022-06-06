@@ -11,16 +11,10 @@ function Home() {
         
         <div className="container" id="">
 
-            {/* row for search  */}
-            <div className="row" id="">
-
-
-            </div>
-
             {/* Gallery */}
-            <div className="columns" id="">
+            <div className="columns is-mobile" id="homeBody">
         
-                    <div className="card column " id="">
+                    <div className="card column is-4" id="">
                         <div className="card-title">
                             <h4>Artist</h4>
                         </div>
@@ -29,7 +23,7 @@ function Home() {
                         </div>
                     </div>
 
-                    <div className="card column " id="">
+                    <div className="card column is-4" id="">
                         <div className="card-title">
                             <h4>Artist</h4>
                         </div>
@@ -38,14 +32,14 @@ function Home() {
                         </div>
                     </div>
 
-                    {/* <div className="card column " id="">
+                    <div className="card column is-4" id="">
                         <div className="card-title">
                             <h4>Artist</h4>
                         </div>
-                        <div className="card-content" id="">
+                        <div className="card-image" id="">
                         <img className="image" src={test} alt="test"></img>
                         </div>
-                    </div> */}
+                    </div>
 
             </div>
 

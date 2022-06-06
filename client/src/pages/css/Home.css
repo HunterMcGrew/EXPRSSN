@@ -6,11 +6,19 @@
     margin: 0 2% 0 2%;
 } */
 
+.column {
+    margin: 0px 10px;
+}
+
 /* .card {
     width: 400px;
 } */
 
-.image {
+/* .image {
     max-width: 325px;
     
+} */
+
+#homeBody {
+    margin-top: 30px;
 }
