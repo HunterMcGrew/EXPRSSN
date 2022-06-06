@@ -20,7 +20,10 @@ const userSchema = new Schema({
     required: true,
     minlength: 5,
   },
-  collections: [Collection.schema],
+  collections: [  {
+    type: Schema.Types.ObjectId,
+    ref: 'Collection',
+  },],
 });
 
 // Set up pre-save middleware to create password
