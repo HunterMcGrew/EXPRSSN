@@ -2,6 +2,7 @@ import React from "react";
 import test from "./images/test.jpg";
 import M from 'materialize-css'
 import "./css/Home.css";
+import NavBar from '../components/navbar';
 
 // Home page to give them a little taste of what the site is before they sign up
 
@@ -9,7 +10,7 @@ import "./css/Home.css";
 
 function Home() {
     return(
-
+        
         <div className="container" id="">
 
             {/* row for search  */}
