@@ -7,10 +7,47 @@ import './css/Home.css';
 // if clicked on a piece or collection without being signed in, push to login/signup page
 
 function Home() {
-  return (
-    <div className="container" id="">
-      {/* row for search  */}
-      <div className="row" id=""></div>
+    return(
+        
+        <div className="container" id="">
+
+            {/* row for search  */}
+            <div className="row" id="">
+
+
+            </div>
+
+            {/* Gallery */}
+            <div className="columns" id="">
+        
+                    <div className="card column " id="">
+                        <div className="card-title">
+                            <h4>Artist</h4>
+                        </div>
+                        <div className="card-image" id="">
+                        <img className="image" src={test} alt="test"></img>
+                        </div>
+                    </div>
+
+                    <div className="card column " id="">
+                        <div className="card-title">
+                            <h4>Artist</h4>
+                        </div>
+                        <div className="card-image" id="">
+                        <img className="image" src={test} alt="test"></img>
+                        </div>
+                    </div>
+
+                    {/* <div className="card column " id="">
+                        <div className="card-title">
+                            <h4>Artist</h4>
+                        </div>
+                        <div className="card-content" id="">
+                        <img className="image" src={test} alt="test"></img>
+                        </div>
+                    </div> */}
+
+            </div>
 
       {/* Gallery */}
       <section className="row m3" id="">
