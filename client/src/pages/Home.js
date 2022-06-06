@@ -22,7 +22,7 @@ function Home() {
             {/* Gallery */}
             <div className="row" id="">
         
-                    <div className="card col s1 m3 l3" id="">
+                    <div className="card col s1 m4 l4" id="">
                         <div className="card-title">
                             <h5>Artist</h5>
                         </div>
@@ -31,7 +31,7 @@ function Home() {
                         </div>
                     </div>
 
-                    <div className="card col s1 m3 l3" id="">
+                    <div className="card col s1 m4 l4" id="">
                         <div className="card-title">
                             <h5>Artist</h5>
                         </div>
@@ -40,7 +40,7 @@ function Home() {
                         </div>
                     </div>
 
-                    <div className="card col s1 m3 l3" id="">
+                    <div className="card col s1 m4 l4" id="">
                         <div className="card-title">
                             <h5>Artist</h5>
                         </div>
