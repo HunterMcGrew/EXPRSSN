@@ -1,6 +1,5 @@
 import React from "react";
 import test from "./images/test.jpg";
-import M from 'materialize-css'
 import "./css/Home.css";
 import NavBar from '../components/navbar';
 
