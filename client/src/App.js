@@ -1,14 +1,13 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
-import MuiNabBar from "./components/navbar/index";
+import NavBar from './components/navbar/index';
 
 function App() {
   return (
     <div>
-      <MuiNabBar />
+      <NavBar />
       <Home />
     </div>
-    
   );
 }
 
