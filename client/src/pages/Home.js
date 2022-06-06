@@ -18,29 +18,29 @@ function Home() {
             </div>
 
             {/* Gallery */}
-            <div className="row" id="">
+            <div className="columns" id="">
         
-                    <div className="card col s1 m4 l4" id="">
+                    <div className="card column " id="">
                         <div className="card-title">
-                            <h5>Artist</h5>
+                            <h4>Artist</h4>
                         </div>
                         <div className="card-image" id="">
                         <img className="image" src={test} alt="test"></img>
                         </div>
                     </div>
 
-                    <div className="card col s1 m4 l4" id="">
+                    <div className="card column " id="">
                         <div className="card-title">
-                            <h5>Artist</h5>
+                            <h4>Artist</h4>
                         </div>
                         <div className="card-image" id="">
                         <img className="image" src={test} alt="test"></img>
                         </div>
                     </div>
 
-                    {/* <div className="card col s1 m4 l4" id="">
+                    {/* <div className="card column " id="">
                         <div className="card-title">
-                            <h5>Artist</h5>
+                            <h4>Artist</h4>
                         </div>
                         <div className="card-content" id="">
                         <img className="image" src={test} alt="test"></img>
