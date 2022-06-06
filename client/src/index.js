@@ -4,6 +4,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './pages/css/reset.css';
 import M from "materialize-css"
+import "materialize-css/dist/css/materialize.min.css"
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

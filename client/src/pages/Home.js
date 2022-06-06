@@ -1,8 +1,6 @@
 import React from "react";
 import test from "./images/test.jpg";
-import M from 'materialize-css'
 import "./css/Home.css";
-import NavBar from '../components/navbar';
 
 // Home page to give them a little taste of what the site is before they sign up
 
@@ -26,7 +24,7 @@ function Home() {
                         <div className="card-title">
                             <h5>Artist</h5>
                         </div>
-                        <div className="card-content" id="">
+                        <div className="card-image" id="">
                         <img className="image" src={test} alt="test"></img>
                         </div>
                     </div>
@@ -35,19 +33,19 @@ function Home() {
                         <div className="card-title">
                             <h5>Artist</h5>
                         </div>
-                        <div className="card-content" id="">
+                        <div className="card-image" id="">
                         <img className="image" src={test} alt="test"></img>
                         </div>
                     </div>
 
-                    <div className="card col s1 m4 l4" id="">
+                    {/* <div className="card col s1 m4 l4" id="">
                         <div className="card-title">
                             <h5>Artist</h5>
                         </div>
                         <div className="card-content" id="">
                         <img className="image" src={test} alt="test"></img>
                         </div>
-                    </div>
+                    </div> */}
 
             </div>
 
