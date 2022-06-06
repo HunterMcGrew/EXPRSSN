@@ -28,4 +28,4 @@ const pieceSchema = new Schema({
 
 const Piece = mongoose.model('piece', pieceSchema);
 
-module.exports = Product;
+module.exports = Piece;

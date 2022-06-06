@@ -8,6 +8,11 @@ const collectionSchema = new Schema({
     required: true,
     trim: true,
   },
+  description: {
+    type: String,
+    required: true,
+    trim: true,
+  },
   pieces: [
     {
       type: Schema.Types.ObjectId,
