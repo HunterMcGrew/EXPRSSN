@@ -33,9 +33,9 @@ const NavBar = ({ toggle }) => {
         </a>
       </nav>
       {/* MobileNav toggle */}
-      <a className="pancake" onClick={toggle}>
+      <div className="pancake" onClick={toggle}>
         open
-      </a>
+      </div>
     </header>
   );
 };

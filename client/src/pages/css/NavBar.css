@@ -6,6 +6,10 @@ header {
   height: 80px;
 }
 
+.pancake {
+  cursor: pointer;
+}
+
 @media screen and (max-width: 768px) {
   #desktopNav {
     display: none;
