@@ -4,6 +4,7 @@ import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import NotFound from "./pages/NotFound";
+import SignUp from './pages/SignUp';
 // import NavBar from "./components/navbar/index";
 import NavBar from "./components/NavBar";
 import Footer from './components/Footer'
@@ -24,6 +25,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
 
         
         <Route path="*" element={<NotFound />} />
