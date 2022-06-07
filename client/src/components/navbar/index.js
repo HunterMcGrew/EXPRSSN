@@ -2,7 +2,7 @@ import React from 'react';
 
 import { AppBar, Typography, Toolbar, Stack, Button } from '@mui/material';
 
-const MuiNabBar = () => {
+const NavBar = () => {
   return (
     <AppBar style={style.nav} position="static">
       <Toolbar style={style.container}>
@@ -20,7 +20,7 @@ const MuiNabBar = () => {
             ADD
           </Button>
           <Button style={style.navItem} color="inherit">
-            About
+            Login
           </Button>
         </Stack>
       </Toolbar>
@@ -76,4 +76,4 @@ const style = {
   },
 };
 
-export default MuiNabBar;
+export default NavBar;
