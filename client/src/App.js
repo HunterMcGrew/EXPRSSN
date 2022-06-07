@@ -8,21 +8,21 @@ import Login from "./pages/Login"
 function App() {
   return (
     // Command / router and uncomment Login to test login page
-    // <Login />
+    <Login />
 
-    <Router>
-    {/* <div> */}
-      <NavBar />
-      <Routes>
-        <Route path="/" element={<Home />} />
+    // <Router>
+    // {/* <div> */}
+    //   <NavBar />
+    //   <Routes>
+    //     <Route path="/" element={<Home />} />
 
         
-        <Route path="*" element={<NotFound />} />
+    //     <Route path="*" element={<NotFound />} />
         
-      {/* </div> */}
-    </Routes>
+    //   {/* </div> */}
+    // </Routes>
 
-    </Router>
+    // </Router>
   );
 }
 
