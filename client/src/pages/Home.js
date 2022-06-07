@@ -64,7 +64,7 @@ function Home() {
                         </div>
                     </div>
 
-                    <div className=" column is-3 pb-5" id="">
+                    <div className="column is-3 pb-5" id="">
                         <div className="">
                             <h4 className="is-size-5 pl-4">Artist</h4>
                         </div>
