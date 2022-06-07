@@ -1,12 +1,13 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 // Import pages & components 
 import Home from './pages/Home';
 import Login from './pages/Login';
 import NotFound from "./pages/NotFound";
 // import NavBar from "./components/navbar/index";
 import NavBar from "./components/NavBar";
-import Footer from "./components/Footer"
 import SignUp from './pages/SignUp';
+import Footer from './components/Footer'
 
 function App() {
   return (
@@ -18,8 +19,9 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/Login" element={<Login />} />
-        <Route path="/Signup" element={<SignUp />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
+
         
         <Route path="*" element={<NotFound />} />
         

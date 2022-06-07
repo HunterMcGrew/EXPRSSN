@@ -7,8 +7,8 @@ function NavBar() {
 
         <header className="is-flex is-justify-content-space-between is-align-items-center" id="">
             {/* Logo / Name */}
-            <div className="logo" id="">
-                <a href="/"><img src={logo} alt="logo" height={200} width={200} /></a>
+            <div className="" id="">
+                <h2 className="ml-5 is-size-3" id="">EXPRSNN</h2>
             </div>
 
             {/* NavBar Elements */}
