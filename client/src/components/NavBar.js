@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import '../pages/css/NavBar.css';
 
 const NavBar = ({ toggle }) => {
@@ -34,9 +34,8 @@ const NavBar = ({ toggle }) => {
         <a href="/about" className="mr-3 ml-3">
           About
         </a>
-
-        {/* </ul> */}
       </nav>
+      {/* MobileNav toggle */}
       <a className="pancake" onClick={toggle}>
         open
       </a>

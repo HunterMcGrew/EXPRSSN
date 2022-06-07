@@ -14,15 +14,12 @@ function App() {
   };
   return (
     <Router>
-      {/* <div> */}
       <MobileNav isOpen={isOpen} toggle={toggle} />
       <NavBar toggle={toggle} />
       <Routes>
         <Route path="/" element={<Home />} />
 
         <Route path="*" element={<NotFound />} />
-
-        {/* </div> */}
       </Routes>
     </Router>
   );
