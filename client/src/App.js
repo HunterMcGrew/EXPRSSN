@@ -7,11 +7,16 @@ import NotFound from "./pages/NotFound";
 import NavBar from "./components/NavBar";
 import Login from "./pages/Login"
 
+const client = new ApolloClient({
+  url: "graphql",
+  cache: new InMemoryCache(),
+});
+
 function App() {
   return (
     // Command / router and uncomment Login to test login page
     // <Login />
-
+    <ApolloProvider client={client}>
     <Router>
     {/* <div> */}
       <NavBar />
@@ -26,6 +31,7 @@ function App() {
     </Routes>
 
     </Router>
+    </ApolloProvider>
   );
 }
 

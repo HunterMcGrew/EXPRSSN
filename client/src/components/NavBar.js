@@ -12,8 +12,6 @@ function NavBar() {
 
             {/* NavBar Elements */}
             <nav className="mr-5" id="">
-
-            {/* <ul className="navList" id=""> */}
                 
                     <a href="/" className="mr-3 ml-3">Home</a>
                 
@@ -21,12 +19,10 @@ function NavBar() {
                     <a href="/explore" className="mr-3 ml-3">Explore</a>
                 
                 
-                    <a href="#" className="mr-3 ml-3">Add</a>
+                    <a href="/add" className="mr-3 ml-3">Add</a>
                 
                 
                     <a href="/about" className="mr-3 ml-3">About</a>
-                
-            {/* </ul> */}
 
             </nav>
 
