@@ -1,19 +1,24 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-// import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 // Import pages & components 
 import Home from './pages/Home';
 import Login from './pages/Login';
 import NotFound from "./pages/NotFound";
+import SignUp from './pages/SignUp';
 // import NavBar from "./components/navbar/index";
 import NavBar from "./components/NavBar";
-import SignUp from './pages/SignUp';
 import Footer from './components/Footer'
+
+const client = new ApolloClient({
+  url: "graphql",
+  cache: new InMemoryCache(),
+});
 
 function App() {
   return (
     // Command / router and uncomment Login to test login page
     // <Login />
-
+    <ApolloProvider client={client}>
     <Router>
     {/* <div> */}
       <NavBar />
@@ -29,6 +34,7 @@ function App() {
     </Routes>
     <Footer />
     </Router>
+    </ApolloProvider>
   );
 }
 

@@ -12,21 +12,17 @@ function NavBar() {
             </div>
             {/* NavBar Elements */}
             <nav className="mr-5" id="">
-
-                {/* <ul className="navList" id=""> */}
-
-                <a href="/" className="mr-3 ml-3">Home</a>
-
-
-                <a href="/explore" className="mr-3 ml-3">Explore</a>
-
-
-                <a href="#" className="mr-3 ml-3">Add</a>
-
-
-                <a href="/Login" className="mr-3 ml-3">Login</a>
-
-                {/* </ul> */}
+                
+                    <a href="/" className="mr-3 ml-3">Home</a>
+                
+                
+                    <a href="/explore" className="mr-3 ml-3">Explore</a>
+                
+                
+                    <a href="/add" className="mr-3 ml-3">Add</a>
+                
+                
+                    <a href="/Login" className="mr-3 ml-3">Login</a>
 
             </nav>
 
