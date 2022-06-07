@@ -7,7 +7,6 @@ import NotFound from "./pages/NotFound";
 // import NavBar from "./components/navbar/index";
 import NavBar from "./components/NavBar";
 import Footer from './components/Footer'
-import Login from "./pages/Login"
 
 const client = new ApolloClient({
   url: "graphql",
