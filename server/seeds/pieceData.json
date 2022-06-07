@@ -1,0 +1,57 @@
+[
+    {
+      "name": "JavaScript1212",
+      "description": "JavaScript",
+      "image": "String"
+    },
+    {
+      "name": "HTML1231213",
+      "description": "JavaScript",
+      "image": "String"
+    },
+    {
+      "name": "CSS1213",
+      "description": "JavaScript",
+      "image": "String"
+    },
+    {
+      "name": "Node.js123",
+      "description": "JavaScript",
+      "image": "String"
+    },
+    {
+      "name": "Express.js",
+      "description": "JavaScript",
+      "image": "String"
+    },
+    {
+      "name": "MySQL",
+      "description": "JavaScript",
+      "image": "String"
+    },
+    {
+      "name": "MongoDB",
+      "description": "JavaScript",
+      "image": "String"
+    },
+    {
+      "name": "React",
+      "description": "JavaScript",
+      "image": "String"
+    },
+    {
+      "name": "GraphQL",
+      "description": "JavaScript",
+      "image": "String"
+    },
+    {
+      "name": "Sequelize",
+      "description": "JavaScript",
+      "image": "String"
+    },
+    {
+      "name": "Handlebars.js",
+      "description": "JavaScript",
+      "image": "String"
+    }
+  ]
