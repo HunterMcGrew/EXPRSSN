@@ -20,7 +20,7 @@ const NavBar = () => {
             ADD
           </Button>
           <Button style={style.navItem} color="inherit">
-            About
+            Login
           </Button>
         </Stack>
       </Toolbar>
