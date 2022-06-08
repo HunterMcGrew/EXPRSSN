@@ -14,16 +14,24 @@ const userSchema = new Schema({
     type: String,
     required: true,
     unique: true,
+    trim: true,
+    match: [/.+@.+\..+/, 'Must match an email address!'],
   },
   password: {
     type: String,
     required: true,
     minlength: 5,
+    match: [
+      /^(?=.*d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/,
+      'Must match 6 - 20 chars, 1 upper, 1 lower, and requires a caps ',
+    ],
   },
-  collections: [  {
-    type: Schema.Types.ObjectId,
-    ref: 'Collection',
-  },],
+  collections: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Collection',
+    },
+  ],
 });
 
 // Set up pre-save middleware to create password
