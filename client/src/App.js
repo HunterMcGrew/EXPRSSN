@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
+import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink} from '@apollo/client';
 // Import pages & components
 import Home from './pages/Home';
 import Login from './pages/Login';
@@ -11,25 +11,28 @@ import SignUp from './pages/SignUp';
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 import MobileNav from './components/MobileNav';
-import Artists from './pages/All-Arists';
+import Artists from './pages/All-Artist';
+import Collections from './pages/All-Collections';
 
 const httpLink = createHttpLink({
-  url: "/graphql",
+  uri: '/graphql',
 });
 
-const authLink = setContext((_, {headers} ) => {
-  const token = localStorage.getItem("id_token");
-
+// Construct request middleware that will attach the JWT token to every request as an `authorization` header
+const authLink = setContext((_, { headers }) => {
+  // get the authentication token from local storage if it exists
+  const token = localStorage.getItem('id_token');
+  // return the headers to the context so httpLink can read them
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : "",
+      authorization: token ? `Bearer ${token}` : '',
     },
   };
 });
 
 const client = new ApolloClient({
-  url: 'graphql',
+  // Set up our client to execute the `authLink` middleware prior to making the request to our GraphQL API
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
@@ -50,7 +53,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/artists" element={<Artists />} />
+          <Route path="/explore" element={<Artists />} />
 
           <Route path="*" element={<NotFound />} />
 
