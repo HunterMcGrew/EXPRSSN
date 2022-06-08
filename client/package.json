@@ -2,6 +2,7 @@
   "name": "exprssn",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:3001",
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
@@ -13,8 +14,14 @@
     "bulma": "^0.9.4",
     "@apollo/client": "^3.5.8",
     "graphql": "^15.4.0",
+<<<<<<< HEAD
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+=======
+    "jwt-decode": "^3.1.2",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+>>>>>>> 243600ca7a941771b559d1d56de8aed1d09dfbdf
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "react-scroll": "^1.8.7",
