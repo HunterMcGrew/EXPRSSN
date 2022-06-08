@@ -1,5 +1,6 @@
 import React from 'react';
 import test from './images/test.jpg';
+import banner from './images/banner.jpg'
 import './css/Home.css';
 // Home page to give them a little taste of what the site is before they sign up
 
