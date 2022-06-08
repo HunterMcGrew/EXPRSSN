@@ -40,7 +40,8 @@ const resolvers = {
       return { token, user };
     },
     login: async (parent, { email, password }) => {
-      // Look up the user by the provided email address. Since the `email` field is unique, we know that only one person will exist with that email
+
+      console.log('Login resolver revoked')
       const user = await User.findOne({ email });
 
       console.log(password);
