@@ -21,6 +21,10 @@ const userSchema = new Schema({
     type: String,
     required: true,
     minlength: 5,
+    match: [
+      /^(?=.*d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/,
+      'Must match 6 - 20 chars, 1 upper, 1 lower, and requires a caps ',
+    ],
   },
   collections: [
     {
