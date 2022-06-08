@@ -1,5 +1,6 @@
 import React from 'react';
 import test from './images/test.jpg';
+import banner from './images/banner.jpg';
 import './css/Home.css';
 // Home page to give them a little taste of what the site is before they sign up
 
@@ -23,13 +24,23 @@ const styles = {
     marginTop: '5%',
     marginRight: '2.5%',
   },
+  bannerImage: {
+    display: 'flex', 
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'centered',
+    alignItems: 'stretch',
+    resizeMode: 'stretch'
+  }
 };
 
 function Home() {
-    return(
-        
+    return(        
         <div className="container pt-5" id="">
-
+            
+            <div className="banner" id="banner">
+                <img className="bannerImage" src={banner} alt="Banner" style={styles.bannerImage}></img>
+            </div>
             <div className="pb-3" id="">
                 <h2 className="has-text-weight-bold pl-5 is-size-4">Your Pieces/Collections</h2>
             </div>
