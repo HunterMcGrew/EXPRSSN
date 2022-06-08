@@ -1,4 +1,8 @@
 import * as React from 'react';
+import { useState } from 'react';
+import { useMutation } from '@apollo/client';
+import { LOGIN_USER } from '../utils/mutations';
+import Auth from '../utils/auth';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -15,16 +19,52 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import SignUp from './SignUp';
 
 
+
 const theme = createTheme();
 
 export default function SignIn() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   const data = new FormData(event.currentTarget);
+  //   console.log({
+  //     email: data.get('email'),
+  //     password: data.get('password'),
+  //   });
+  // };
+
+  const [formState, setFormState] = useState({ email: "", password: "" });
+
+  const [login, { error }] = useMutation(LOGIN_USER);
+
+  console.log("First formState", formState);
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormState({
+      ...formState,
+      [name]: value,
+
     });
+  };
+
+  console.log("after handleChange", formState);
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      console.log("we trying");
+      const { data } = await login({
+        variables: {...formState}
+      });
+      console.log("try catch", data);
+      Auth.login(data.login.token);
+      window.location.replace("/");
+    } catch (err) {
+      if (err) throw err;
+      console.log(err);
+    }
   };
 
   return (
@@ -46,7 +86,7 @@ export default function SignIn() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box component="form" onSubmit={handleFormSubmit} sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
@@ -54,8 +94,10 @@ export default function SignIn() {
               id="email"
               label="Email Address"
               name="email"
+              value={formState.email}
               autoComplete="email"
               autoFocus
+              onChange={handleChange}
             />
             <TextField
               margin="normal"
@@ -65,7 +107,10 @@ export default function SignIn() {
               label="Password"
               type="password"
               id="password"
+              value={formState.password}
               autoComplete="current-password"
+              onChange={handleChange}
+              
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -96,4 +141,4 @@ export default function SignIn() {
       </Container>
     </ThemeProvider>
   );
-}
+};
