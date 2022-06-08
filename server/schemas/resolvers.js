@@ -18,7 +18,17 @@ const resolvers = {
     },
     User: async (parent, {_id} ) => {
       return User.findOne({_id})
-    }
+    },
+    Piece: async (parent, {_id} ) => {
+      return Piece.findOne({_id});
+    },
+    Collection: async (parent, {_id} ) => {
+      return Collection.findOne({_id});
+    },
+    Category: async (parent, {_id} ) => {
+      return Category.findOne({_id});
+    },
+
   },
   Mutation: {
     addUser: async (parent, { username, email, password }) => {
