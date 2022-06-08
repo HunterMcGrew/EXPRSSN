@@ -7,7 +7,7 @@ import TextField from '@mui/material/TextField';
 import styled from 'styled-components';
 import { Button } from '@mui/material';
 
-// The route for this page needs to have an array of objects that contain the Collection Name & image of the collection
+// The route for this page needs to have an array of objects that contain the Artist Name & image of the collection
 const data = [
   'Paris',
   'London',
@@ -48,11 +48,23 @@ const filterData = (query, data) => {
   }
 };
 
-function Collections() {
+const styles = {
+  pageWrapper: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  headerWrapper: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+};
+
+function Artists() {
   const [searchQuery, setSearchQuery] = useState('');
   const dataFiltered = filterData(searchQuery, data);
   return (
-    <div className="container">
+    <pageWrapper style={styles.pageWrapper}>
       <div
         style={{
           display: 'flex',
@@ -126,8 +138,8 @@ function Collections() {
           </div>
         </div>
       </div> */}
-    </div>
+    </pageWrapper>
   );
 }
 
-export default Collections;
+export default Artists;

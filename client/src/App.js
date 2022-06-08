@@ -11,7 +11,8 @@ import SignUp from './pages/SignUp';
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 import MobileNav from './components/MobileNav';
-import Artists from './pages/All-Arists';
+import Artists from './pages/All-Artist';
+import Collections from './pages/All-Collections';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -52,7 +53,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/artists" element={<Artists />} />
+          <Route path="/explore" element={<Artists />} />
 
           <Route path="*" element={<NotFound />} />
 
