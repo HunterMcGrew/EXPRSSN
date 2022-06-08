@@ -1,5 +1,5 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { User, Collection, Piece } = require("../models");
+const { User, Collection, Piece, Category } = require("../models");
 const { signToken } = require("../utils/auth");
 const bcrypt = require("bcrypt");
 const resolvers = {
@@ -7,6 +7,18 @@ const resolvers = {
     Users: async () => {
       return User.find({});
     },
+    Pieces: async () => {
+      return Piece.find({});
+    },
+    Categories: async () => {
+      return Category.find({});
+    },
+    Collections: async () => {
+      return Collection.find({});
+    },
+    User: async (parent, {_id} ) => {
+      return User.findOne({_id})
+    }
   },
   Mutation: {
     addUser: async (parent, { username, email, password }) => {

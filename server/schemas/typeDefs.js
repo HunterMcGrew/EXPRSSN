@@ -41,7 +41,11 @@ const typeDefs = gql`
     Pieces: [Piece]
     Categories: [Category]
     Collections: [Collection]
-    
+    User(_id: ID!): User
+    Piece: [Piece]
+    Category: [Category]
+    Collection: [Collection]
+
   }
 
   type Mutation {
