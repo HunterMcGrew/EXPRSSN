@@ -53,7 +53,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/explore" element={<Artists />} />
+          <Route path="/explore" element={<Collections />} />
 
           <Route path="*" element={<NotFound />} />
 
