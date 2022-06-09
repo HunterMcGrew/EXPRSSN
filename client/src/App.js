@@ -11,6 +11,7 @@ import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 import MobileNav from './components/MobileNav';
 import Artists from './pages/All-Arists';
+import About from './pages/About';
 
 const client = new ApolloClient({
   url: 'graphql',
@@ -34,6 +35,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/artists" element={<Artists />} />
+          <Route path="/about" element={<About />} />
 
           <Route path="*" element={<NotFound />} />
 
