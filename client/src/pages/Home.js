@@ -1,7 +1,8 @@
 import React from 'react';
 import test from './images/test.jpg';
-import banner from './images/banner.jpg';
+import bannerImage from './images/banner.jpg';
 import './css/Home.css';
+import Banner from 'react-js-banner';
 // Home page to give them a little taste of what the site is before they sign up
 
 // if clicked on a piece or collection without being signed in, push to login/signup page
@@ -38,9 +39,15 @@ function Home() {
     return(        
         <div className="container pt-5" id="">
             
-            <div className="banner" id="banner">
-                <img className="bannerImage" src={banner} alt="Banner" style={styles.bannerImage}></img>
-            </div>
+            <Banner 
+            title="This is an example banner with CSS and Image" 
+            image={bannerImage} 
+            imageClass="App-logo"
+            css={this.state.banner2Css}
+            />
+            {/* <div className="banner" id="banner">
+                <img className="bannerImage" src={bannerImage} alt="Banner" style={styles.bannerImage}></img>
+            </div> */}
             <div className="pb-3" id="">
                 <h2 className="has-text-weight-bold pl-5 is-size-4">Your Pieces/Collections</h2>
             </div>
