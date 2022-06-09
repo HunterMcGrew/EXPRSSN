@@ -11,7 +11,6 @@ import SignUp from './pages/SignUp';
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 import MobileNav from './components/MobileNav';
-<<<<<<< HEAD
 import Artists from './pages/All-Artist';
 import Collections from './pages/All-Collections';
 import SinglePiece from "./pages/Single-Piece";
@@ -32,10 +31,6 @@ const authLink = setContext((_, { headers }) => {
     },
   };
 });
-=======
-import Artists from './pages/All-Arists';
-import About from './pages/About';
->>>>>>> Front
 
 const client = new ApolloClient({
   // Set up our client to execute the `authLink` middleware prior to making the request to our GraphQL API
@@ -59,14 +54,11 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
-<<<<<<< HEAD
           <Route path="/explore" element={<Collections />} />
 
           <Route path="/single-piece" element={<SinglePiece />} />
-=======
           <Route path="/artists" element={<Artists />} />
           <Route path="/about" element={<About />} />
->>>>>>> Front
 
           <Route path="*" element={<NotFound />} />
 
