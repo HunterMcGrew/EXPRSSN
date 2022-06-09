@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from 'react';
 import test from './images/test.jpg';
 import banner from './images/banner.jpg'
@@ -128,3 +129,5 @@ function Home() {
 };
 
 export default Home;
+=======
+>>>>>>> Front

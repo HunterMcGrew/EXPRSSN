@@ -15,9 +15,13 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import SignUp from "./SignUp";
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
+<<<<<<< HEAD
 
 import Auth from '../utils/auth';
+=======
+>>>>>>> Front
 
+import Auth from '../utils/auth';
 
 const theme = createTheme();
 
@@ -102,7 +106,11 @@ const Login = (props) => {
               autoComplete="email"
               autoFocus
               value={formState.email}
+<<<<<<< HEAD
               onChange={handleChange}
+=======
+                  onChange={handleChange}
+>>>>>>> Front
             />
             <TextField
               margin="normal"
@@ -114,7 +122,11 @@ const Login = (props) => {
               id="password"
               autoComplete="current-password"
               value={formState.password}
+<<<<<<< HEAD
               onChange={handleChange}
+=======
+                  onChange={handleChange}
+>>>>>>> Front
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -125,10 +137,14 @@ const Login = (props) => {
               fullWidth
               variant="contained"
 <<<<<<< HEAD
+<<<<<<< HEAD
               sx={{ mt: 3, mb: 2, bgcolor: 'black' }}
 =======
               sx={{ mt: 3, mb: 2, bgcolor: "black" }}
 >>>>>>> 243600ca7a941771b559d1d56de8aed1d09dfbdf
+=======
+              sx={{ mt: 3, mb: 2, bgcolor: "black" }}
+>>>>>>> Front
             >
               Sign In
             </Button>
@@ -157,4 +173,8 @@ const Login = (props) => {
   );
 }
 
+<<<<<<< HEAD
 export default Login;
+=======
+export default Login
+>>>>>>> Front
