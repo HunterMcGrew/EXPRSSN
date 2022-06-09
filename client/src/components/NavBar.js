@@ -10,13 +10,13 @@ const NavBar = ({ toggle }) => {
     >
       {/* Logo / Name */}
       <div className="logo" id="">
-        <a href="/">
+        <a href="/Home">
           <img src={logo} alt="logo" height={200} width={200} />
         </a>
       </div>
       {/* NavBar Elements */}
       <nav className="mr-5" id="desktopNav">
-        <a href="/" className="mr-3 ml-3">
+        <a href="/Home" className="mr-3 ml-3">
           Home
         </a>
 
@@ -28,7 +28,7 @@ const NavBar = ({ toggle }) => {
           Add
         </a>
 
-        <a href="/Login" className="mr-3 ml-3">
+        <a href="/login" className="mr-3 ml-3">
           Login
         </a>
       </nav>

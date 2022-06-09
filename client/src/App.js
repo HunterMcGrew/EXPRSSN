@@ -7,12 +7,15 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import NotFound from './pages/NotFound';
 import SignUp from './pages/SignUp';
+import Collections from './pages/Collection'
+import SinglePiece from './pages/Single-Piece'
+import Dashboard from './utils/pages/Dashboard';
+import About from './pages/About';
 // import NavBar from "./components/navbar/index";
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 import MobileNav from './components/MobileNav';
 import Artists from './pages/All-Artist';
-import About from './pages/About';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -47,11 +50,15 @@ function App() {
         <MobileNav isOpen={isOpen} toggle={toggle} />
         <NavBar toggle={toggle} />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/explore" element={<Collections />} />
+
+          <Route path="/single-piece" element={<SinglePiece />} />
           <Route path="/artists" element={<Artists />} />
-          <Route path="/about" element={<About />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path='/about' element={<About />} />
 
           <Route path="*" element={<NotFound />} />
 
