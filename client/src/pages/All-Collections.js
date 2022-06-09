@@ -39,6 +39,7 @@ export default function allCollections() {
             const response = await fetch('https://nba-players.herokuapp.com/players-stats')
             const artData = await response.json()
             setAllCollData(artData)
+            console.log(artData)
         }
         fetchData()
     }, [])
