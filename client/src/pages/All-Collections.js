@@ -1,5 +1,5 @@
-// page displaying all collections
-
+// page to view a collection of pieces
+import { useState } from 'react';
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
@@ -34,23 +34,23 @@ function Copyright() {
 const theme = createTheme();
 
 export default function allCollections() {
-    const [collectionData, setCollectionData] = useState([]);
+    const [allCollData, setAllCollData] = useState([]);
     useEffect(() => {
         const fetchData = async () => {
             const response = await fetch('https://nba-players.herokuapp.com/players-stats')
             const artData = await response.json()
-            setCollectionData(artData)
+            setAllCollData(artData)
         }
         fetchData()
     }, [])
-    return (
+  return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <AppBar position="relative">
         <Toolbar>
           <CameraIcon sx={{ mr: 2 }} />
           <Typography variant="h6" color="inherit" noWrap>
-            Collections
+            Album layout
           </Typography>
         </Toolbar>
       </AppBar>
@@ -92,8 +92,8 @@ export default function allCollections() {
         <Container sx={{ py: 8 }} maxWidth="md">
           {/* End hero unit */}
           <Grid container spacing={4}>
-            {collectionData.map((collection) => (
-              <Grid item key={collection} xs={12} sm={6} md={4}>
+            {cards.map((card) => (
+              <Grid item key={card} xs={12} sm={6} md={4}>
                 <Card
                   sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
                 >
@@ -107,13 +107,11 @@ export default function allCollections() {
                     alt="random"
                   />
                   <CardContent sx={{ flexGrow: 1 }}>
-                        {/* collection name */}
                     <Typography gutterBottom variant="h5" component="h2">
-                      {collection.name}
+                      {allCollData.name}
                     </Typography>
-                        {/* collection description */}
                     <Typography>
-                      {collection.description}
+                      {allCollData.description}
                     </Typography>
                   </CardContent>
                   <CardActions>

@@ -31,7 +31,7 @@ const MobileNav = ({ isOpen, toggle }) => {
         {/* Button to close the overlay navigation  */}
         <div>
           <a
-            href="javascript:void(0)"
+            href="#"
             className="closebtn mt-6 pt-4"
             onClick={toggle}
           >

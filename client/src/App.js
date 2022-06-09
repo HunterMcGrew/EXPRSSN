@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
+import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink} from '@apollo/client';
 // Import pages & components
 import Home from './pages/Home';
 import Login from './pages/Login';
@@ -12,9 +13,29 @@ import allCollections from './pages/All-Collections';
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 import MobileNav from './components/MobileNav';
+import Artists from './pages/All-Artist';
+import SinglePiece from "./pages/Single-Piece";
+
+const httpLink = createHttpLink({
+  uri: '/graphql',
+});
+
+// Construct request middleware that will attach the JWT token to every request as an `authorization` header
+const authLink = setContext((_, { headers }) => {
+  // get the authentication token from local storage if it exists
+  const token = localStorage.getItem('id_token');
+  // return the headers to the context so httpLink can read them
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  };
+});
 
 const client = new ApolloClient({
-  url: 'graphql',
+  // Set up our client to execute the `authLink` middleware prior to making the request to our GraphQL API
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
 
@@ -34,10 +55,12 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/collection" element={<Collection />} />
+          <Route path="/explore" element={<Collections />} />
+          <Route path="/collection" element={<Collection />}
+          <Route path="/single-piece" element={<SinglePiece/>} />
           <Route path="/allCollections" element={<allCollections />} />
           <Route path="*" element={<NotFound />} />
-          {/* </div> */}
+
         </Routes>
         <Footer />
       </Router>
