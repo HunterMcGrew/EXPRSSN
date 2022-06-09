@@ -18,6 +18,7 @@ import { LOGIN_USER } from '../utils/mutations';
 
 import Auth from '../utils/auth';
 
+
 const theme = createTheme();
 
 const Login = (props) => {
@@ -101,7 +102,7 @@ const Login = (props) => {
               autoComplete="email"
               autoFocus
               value={formState.email}
-                  onChange={handleChange}
+              onChange={handleChange}
             />
             <TextField
               margin="normal"
@@ -113,7 +114,7 @@ const Login = (props) => {
               id="password"
               autoComplete="current-password"
               value={formState.password}
-                  onChange={handleChange}
+              onChange={handleChange}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -152,4 +153,4 @@ const Login = (props) => {
   );
 }
 
-export default Login
+export default Login;
