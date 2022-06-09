@@ -1,133 +1,145 @@
-import React from 'react';
-import test from './images/test.jpg';
+// page to view a collection of pieces
 import { useState } from 'react';
-import IconButton from '@mui/material/IconButton';
-import SearchIcon from '@mui/icons-material/Search';
-import TextField from '@mui/material/TextField';
-import styled from 'styled-components';
-import { Button } from '@mui/material';
+import * as React from 'react';
+import AppBar from '@mui/material/AppBar';
+import Button from '@mui/material/Button';
+import CameraIcon from '@mui/icons-material/PhotoCamera';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import CssBaseline from '@mui/material/CssBaseline';
+import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import Link from '@mui/material/Link';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-// The route for this page needs to have an array of objects that contain the Collection Name & image of the collection
-const data = [
-  'Paris',
-  'London',
-  'New York',
-  'Tokyo',
-  'Berlin',
-  'Buenos Aires',
-  'Cairo',
-  'Canberra',
-  'Rio de Janeiro',
-  'Dublin',
-];
-
-const SearchBar = ({ setSearchQuery }) => (
-  <form style={{ display: 'flex', justifyContent: 'center' }}>
-    <TextField
-      id="search-bar"
-      className="text"
-      onInput={(e) => {
-        setSearchQuery(e.target.value);
-      }}
-      label="Enter a city name"
-      variant="outlined"
-      placeholder="Search..."
-      size="small"
-    />
-    <IconButton type="submit" aria-label="search">
-      <SearchIcon style={{ fill: 'blue' }} />
-    </IconButton>
-  </form>
-);
-
-const filterData = (query, data) => {
-  if (!query) {
-    return data;
-  } else {
-    return data.filter((d) => d.toLowerCase().includes(query));
-  }
-};
-
-function Collections() {
-  const [searchQuery, setSearchQuery] = useState('');
-  const dataFiltered = filterData(searchQuery, data);
+function Copyright() {
   return (
-    <div className="container">
-      <div
-        style={{
-          display: 'flex',
-          alignSelf: 'center',
-          justifyContent: 'center',
-          flexDirection: 'column',
-          padding: 20,
-        }}
-      >
-        <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-        <div className="container pt-5">
-          <div
-            className="columns is-flex-wrap-wrap"
-            id=""
-            style={{ padding: 3 }}
-          >
-            {dataFiltered.map((d) => (
-              <div
-                className="column is-3"
-                style={{
-                  padding: 5,
-                  justifyContent: 'normal',
-                  fontSize: 20,
-                  color: 'blue',
-                  margin: 1,
-                  width: '250px',
-                  BorderColor: 'green',
-                  borderWidth: '10px',
-                }}
-                key={d.id}
-              >
-                {d}
-                <img className="image" src={test} alt="test"></img>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-      {/* <div className="container pt-5" id="">
-        <div className="columns is-flex-wrap-wrap" id="">
-          <div className="column is-3" id="">
-            <img className="image" src={test} alt="test"></img>
-          </div>
-
-          <div className="column is-3" id="">
-            <img className="image" src={test} alt="test"></img>
-          </div>
-
-          <div className="column is-3" id="">
-            <img className="image" src={test} alt="test"></img>
-          </div>
-
-          <div className="column is-3" id="">
-            <img className="image" src={test} alt="test"></img>
-          </div>
-
-          <div className="column is-3" id="">
-            <img className="image" src={test} alt="test"></img>
-          </div>
-
-          <div className="column is-3" id="">
-            <img className="image" src={test} alt="test"></img>
-          </div>
-
-          <div className="column is-3" id="">
-            <img className="image" src={test} alt="test"></img>
-          </div>
-
-          <div className="column is-3" id="">
-            <img className="image" src={test} alt="test"></img>
-          </div>
-        </div>
-      </div> */}
-    </div>
+    <Typography variant="body2" color="text.secondary" align="center">
+      {'Copyright © '}
+      <Link color="inherit" href="https://mui.com/">
+        Your Website
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
   );
 }
 
-export default Collections;
+const theme = createTheme();
+
+export default function allCollections() {
+    const [allCollData, setAllCollData] = useState([]);
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await fetch('https://nba-players.herokuapp.com/players-stats')
+            const artData = await response.json()
+            setAllCollData(artData)
+        }
+        fetchData()
+    }, [])
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <AppBar position="relative">
+        <Toolbar>
+          <CameraIcon sx={{ mr: 2 }} />
+          <Typography variant="h6" color="inherit" noWrap>
+            Album layout
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <main>
+        {/* Hero unit */}
+        <Box
+          sx={{
+            bgcolor: 'background.paper',
+            pt: 8,
+            pb: 6,
+          }}
+        >
+          <Container maxWidth="sm">
+            <Typography
+              component="h1"
+              variant="h2"
+              align="center"
+              color="text.primary"
+              gutterBottom
+            >
+              Album layout
+            </Typography>
+            <Typography variant="h5" align="center" color="text.secondary" paragraph>
+              Something short and leading about the collection below—its contents,
+              the creator, etc. Make it short and sweet, but not too short so folks
+              don&apos;t simply skip over it entirely.
+            </Typography>
+            <Stack
+              sx={{ pt: 4 }}
+              direction="row"
+              spacing={2}
+              justifyContent="center"
+            >
+              <Button variant="contained">Main call to action</Button>
+              <Button variant="outlined">Secondary action</Button>
+            </Stack>
+          </Container>
+        </Box>
+        <Container sx={{ py: 8 }} maxWidth="md">
+          {/* End hero unit */}
+          <Grid container spacing={4}>
+            {cards.map((card) => (
+              <Grid item key={card} xs={12} sm={6} md={4}>
+                <Card
+                  sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
+                >
+                  <CardMedia
+                    component="img"
+                    sx={{
+                      // 16:9
+                      pt: '56.25%',
+                    }}
+                    image="https://source.unsplash.com/random"
+                    alt="random"
+                  />
+                  <CardContent sx={{ flexGrow: 1 }}>
+                    <Typography gutterBottom variant="h5" component="h2">
+                      {allCollData.name}
+                    </Typography>
+                    <Typography>
+                      {allCollData.description}
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Button size="small">View</Button>
+                    <Button size="small">Edit</Button>
+                  </CardActions>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+        </Container>
+      </main>
+      {/* Footer */}
+      <Box sx={{ bgcolor: 'background.paper', p: 6 }} component="footer">
+        <Typography variant="h6" align="center" gutterBottom>
+          Footer
+        </Typography>
+        <Typography
+          variant="subtitle1"
+          align="center"
+          color="text.secondary"
+          component="p"
+        >
+          Something here to give the footer a purpose!
+        </Typography>
+        <Copyright />
+      </Box>
+      {/* End footer */}
+    </ThemeProvider>
+  );
+}
