@@ -11,23 +11,23 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import NotFound from './pages/NotFound';
 import SignUp from './pages/SignUp';
+import Explore from './pages/Explore';
+import SinglePiece from './pages/Single-Piece';
+import Dashboard from './utils/pages/Dashboard';
+import About from './pages/About';
+// import NavBar from "./components/navbar/index";
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 import MobileNav from './components/MobileNav';
 import Artists from './pages/All-Artist';
-// import AllCollections from './pages/AllCollections';
-import SinglePiece from './pages/Single-Piece';
-import Collection from './pages/Collection';
+// import allCollections from './pages/All-Collections';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
 });
 
-// Construct request middleware that will attach the JWT token to every request as an `authorization` header
 const authLink = setContext((_, { headers }) => {
-  // get the authentication token from local storage if it exists
   const token = localStorage.getItem('id_token');
-  // return the headers to the context so httpLink can read them
   return {
     headers: {
       ...headers,
@@ -55,12 +55,15 @@ function App() {
         <MobileNav isOpen={isOpen} toggle={toggle} />
         <NavBar toggle={toggle} />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
-          {/* <Route path="/explore" element={<AllCollections />} /> */}
+          <Route path="/explore" element={<Explore />} />
+
           <Route path="/single-piece" element={<SinglePiece />} />
-          {/* <Route path="/collection" element={<Collection />} /> */}
+          <Route path="/artists" element={<Artists />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/about" element={<About />} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>

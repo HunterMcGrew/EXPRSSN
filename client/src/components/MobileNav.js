@@ -31,7 +31,7 @@ const MobileNav = ({ isOpen, toggle }) => {
         {/* Button to close the overlay navigation  */}
         <div>
           <a
-            href="#"
+            href="/home"
             className="closebtn mt-6 pt-4"
             onClick={toggle}
           >
@@ -40,17 +40,20 @@ const MobileNav = ({ isOpen, toggle }) => {
         </div>
         {/* Overlay content */}
         <div className="overlay-content">
-          <a href="#" onClick={toggle}>
+          <a href="/" onClick={toggle}>
+            Home
+          </a>
+          <a href="/explore" onClick={toggle}>
+            Explore
+          </a>
+          <a href="/add" onClick={toggle}>
+            Add
+          </a>
+          <a href="/login" onClick={toggle}>
+            Login
+          </a>
+          <a href="/about" onClick={toggle}>
             About
-          </a>
-          <a href="#" onClick={toggle}>
-            Services
-          </a>
-          <a href="#" onClick={toggle}>
-            Clients
-          </a>
-          <a href="#" onClick={toggle}>
-            Contact
           </a>
         </div>
       </NavContainer>

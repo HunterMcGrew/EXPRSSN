@@ -25,7 +25,7 @@ const styles = {
   },
 };
 
-function Home() {
+function Dashboard() {
     return(
         
         <div className="container pt-5" id="">
@@ -126,4 +126,4 @@ function Home() {
     );
 };
 
-export default Home;
+export default Dashboard;
