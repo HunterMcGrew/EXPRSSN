@@ -33,20 +33,23 @@ const CollectionSlider = () => {
     { name: 'L', img: test },
     { name: 'M', img: test2 },
   ];
+  //
   const containerStyles = {
     width: '750px',
     height: '350px',
     margin: '0 auto',
   };
   const pageStyle = {
-    height: '80vh',
+    // height: '80vh',
   };
+  // style for the TITLE of the ARTIST sliders
   const titleStyle = {
     marginTop: '2%',
     marginLeft: '10%',
     fontSize: '180%',
     fontWeight: 'bolder',
   };
+  // style for the TITLE of the COLLECTION sliders
   const titleStyle2 = {
     marginTop: '2%',
     marginLeft: '10%',
