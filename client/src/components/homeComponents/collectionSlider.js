@@ -37,9 +37,7 @@ const CollectionSlider = () => {
     width: '750px',
     height: '350px',
     margin: '0 auto',
-  };
-  const pageStyle = {
-    height: '80vh',
+    paddingBottom: '1rem'
   };
   const titleStyle = {
     marginTop: '2%',
@@ -54,7 +52,7 @@ const CollectionSlider = () => {
     fontWeight: 'bolder',
   };
   return (
-    <div style={pageStyle}>
+    <div>
       <h1 style={titleStyle}>Top 10 Artists</h1>
       <div style={containerStyles}>
         <ImageSlider slides={slides} />

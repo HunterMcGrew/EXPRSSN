@@ -1,22 +1,23 @@
 .activeDot {
-  background-image: url('../../pages/images/greenDot.jpg');
+  background-image: url('../../pages/images/blackdot.png');
   background-size: cover;
   padding-left: 2%;
   /* background-position: center center; */
   /* position: absolute; */
   height: 100%;
-  color: #fff;
+  color: black;
   width: 5%;
-  border-radius: 100%;
+  /* border-radius: 100%; */
 }
 .dot {
-  background-image: url('../../pages/images/redDot.jpg');
+  background-image: url('../../pages/images/greyDot.png');
   background-size: cover;
   padding-left: 2%;
-  color: #fff;
+  padding-bottom: 1%;
+  color: rgb(98, 98, 98);
   /* background-position: center center; */
   /* position: absolute; */
-  height: 100%;
+  height: auto;
   width: 5%;
-  border-radius: 100%;
+  /* border-radius: 100%; */
 }

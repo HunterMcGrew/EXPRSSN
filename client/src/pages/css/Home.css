@@ -13,7 +13,7 @@
 } */
 
 /* CAROUSEL */
-@import url('https://fonts.googleapis.com/css?family=Lobster');
+/* @import url('https://fonts.googleapis.com/css?family=Lobster'); */
 
 :root {
   --level2-height: 150px;
@@ -32,7 +32,6 @@
 
 body {
   /* background-color: #89fad0; */
-  font-family: 'Lobster';
 }
 
 #carousel {
