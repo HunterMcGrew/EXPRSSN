@@ -16,6 +16,12 @@ import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 import MobileNav from './components/MobileNav';
 import Artists from './pages/All-Artist';
+<<<<<<< HEAD
+=======
+// import allCollections from './pages/All-Collections';
+import SinglePiece from "./pages/Single-Piece";
+// import Collection from "./pages/Collection";
+>>>>>>> c195355b596276aa7b46185c81868b84af0732fd
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -53,12 +59,18 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
+<<<<<<< HEAD
           <Route path="/explore" element={<Explore />} />
 
           <Route path="/single-piece" element={<SinglePiece />} />
           <Route path="/artists" element={<Artists />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path='/about' element={<About />} />
+=======
+          {/* <Route path="/explore" element={<allCollections />} /> */}
+          <Route path="/single-piece" element={<SinglePiece />} />
+          {/* <Route path="/collection" element={<Collection /> } /> */}
+>>>>>>> c195355b596276aa7b46185c81868b84af0732fd
 
           <Route path="*" element={<NotFound />} />
 
