@@ -59,7 +59,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
 
-          <Route path="/allcollections" element={<AllCollections />} />
+          <Route path="/explore" element={<AllCollections />} />
           <Route path="/single-piece" element={<SinglePiece />} />
           <Route path="/artists" element={<Artists />} />
           <Route path="/dashboard" element={<Dashboard />} />
