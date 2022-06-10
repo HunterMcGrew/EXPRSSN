@@ -10,13 +10,17 @@ const pieceSchema = new Schema({
   },
   artist: {
     type: String,
-    required: true,
+    required: false,
     trim: true,
   },
   description: {
     type: String,
   },
   image: {
+    type: String,
+  },
+  // will be HTTP from cloudinary
+  link: {
     type: String,
   },
   category: {

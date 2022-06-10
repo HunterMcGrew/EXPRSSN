@@ -87,8 +87,8 @@ const resolvers = {
       throw new AuthenticationError("You need to be logged in!");
     },
 
-    addPiece: async (parent, { name, description, collectionId }, context) => {
-      const piece = await Piece.create({ name, description });
+    addPiece: async (parent, { name, description, link, collectionId }, context) => {
+      const piece = await Piece.create({ name, description, link });
 
       if (context.user) {
         return Collection.findOneAndUpdate(
