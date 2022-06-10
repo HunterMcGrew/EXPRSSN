@@ -22,6 +22,7 @@ const typeDefs = gql`
     _id: ID!
     name: String!
     description: String!
+    pieces: [Piece]
   }
 
   type Collection {
@@ -38,7 +39,14 @@ const typeDefs = gql`
 
   type Query {
     Users: [User]
-   
+    Pieces: [Piece]
+    Categories: [Category]
+    Collections: [Collection]
+    User(_id: ID!): User
+    Piece(_id: ID!): Piece
+    Category(_id: ID!): Category
+    Collection(_id: ID!): Collection
+
   }
 
   type Mutation {

@@ -1,0 +1,22 @@
+header {
+  position: sticky;
+  background-color: aliceblue;
+  top: 0;
+  z-index: 999;
+  height: 80px;
+}
+
+.pancake {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  #desktopNav {
+    display: none;
+  }
+}
+@media screen and (min-width: 768px) {
+  .pancake {
+    display: none;
+  }
+}

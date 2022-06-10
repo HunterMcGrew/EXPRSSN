@@ -1,0 +1,22 @@
+.activeDot {
+  background-image: url('../../pages/images/greenDot.jpg');
+  background-size: cover;
+  padding-left: 2%;
+  /* background-position: center center; */
+  /* position: absolute; */
+  height: 100%;
+  color: #fff;
+  width: 5%;
+  border-radius: 100%;
+}
+.dot {
+  background-image: url('../../pages/images/redDot.jpg');
+  background-size: cover;
+  padding-left: 2%;
+  color: #fff;
+  /* background-position: center center; */
+  /* position: absolute; */
+  height: 100%;
+  width: 5%;
+  border-radius: 100%;
+}

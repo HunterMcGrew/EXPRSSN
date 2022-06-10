@@ -1,1 +1,0 @@
-// page displaying all collections

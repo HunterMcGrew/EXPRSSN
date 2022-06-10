@@ -1,5 +1,5 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { User, Collection, Piece } = require("../models");
+const { User, Collection, Piece, Category } = require("../models");
 const { signToken } = require("../utils/auth");
 const bcrypt = require("bcrypt");
 const resolvers = {
@@ -7,6 +7,28 @@ const resolvers = {
     Users: async () => {
       return User.find({});
     },
+    Pieces: async () => {
+      return Piece.find({});
+    },
+    Categories: async () => {
+      return Category.find({});
+    },
+    Collections: async () => {
+      return Collection.find({});
+    },
+    User: async (parent, {_id} ) => {
+      return User.findOne({_id})
+    },
+    Piece: async (parent, {_id} ) => {
+      return Piece.findOne({_id});
+    },
+    Collection: async (parent, {_id} ) => {
+      return Collection.findOne({_id});
+    },
+    Category: async (parent, {_id} ) => {
+      return Category.findOne({_id});
+    },
+
   },
   Mutation: {
     addUser: async (parent, { username, email, password }) => {
@@ -18,7 +40,8 @@ const resolvers = {
       return { token, user };
     },
     login: async (parent, { email, password }) => {
-      // Look up the user by the provided email address. Since the `email` field is unique, we know that only one person will exist with that email
+
+      console.log('Login resolver revoked')
       const user = await User.findOne({ email });
 
       console.log(password);
