@@ -1,12 +1,19 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { setContext } from '@apollo/client/link/context';
-import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink} from '@apollo/client';
-// Import pages & components
+import {
+  ApolloClient,
+  ApolloProvider,
+  InMemoryCache,
+  createHttpLink,
+} from '@apollo/client';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import NotFound from './pages/NotFound';
 import SignUp from './pages/SignUp';
+import SinglePiece from './pages/Single-Piece';
+import Dashboard from './utils/pages/Dashboard';
+import About from './pages/About';
 // import NavBar from "./components/navbar/index";
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
@@ -21,11 +28,8 @@ const httpLink = createHttpLink({
   uri: '/graphql',
 });
 
-// Construct request middleware that will attach the JWT token to every request as an `authorization` header
 const authLink = setContext((_, { headers }) => {
-  // get the authentication token from local storage if it exists
   const token = localStorage.getItem('id_token');
-  // return the headers to the context so httpLink can read them
   return {
     headers: {
       ...headers,
@@ -52,16 +56,21 @@ function App() {
       <Router>
         <MobileNav isOpen={isOpen} toggle={toggle} />
         <NavBar toggle={toggle} />
+        
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
-          {/* <Route path="/explore" element={<allCollections />} /> */}
+          
+          <Route path="/allcollections" element={<AllCollections />} />
           <Route path="/single-piece" element={<SinglePiece />} />
           {/* <Route path="/collection" element={<Collection /> } /> */}
           <Route path="/upload" element={<Upload />} />
-          <Route path="*" element={<NotFound />} />
+          <Route path="/artists" element={<Artists />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/about" element={<About />} />
 
+          <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
       </Router>

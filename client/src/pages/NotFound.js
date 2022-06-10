@@ -4,7 +4,7 @@
 function NotFound() {
     return(
 
-        <h2>404 Not Found :(</h2>
+        <h1 style={{color: "black", textAlign: "center", paddingTop: "15rem", paddingBottom: "20rem", fontSize: "75px"}}>404 Not Found :(</h1>
     );
 };
 

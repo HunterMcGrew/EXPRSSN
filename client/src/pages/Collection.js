@@ -1,5 +1,5 @@
 // page to view a collection of pieces
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
 import CameraIcon from '@mui/icons-material/PhotoCamera';
@@ -30,24 +30,24 @@ function Copyright() {
   );
 }
 
-const theme = createTheme();
+// const theme = createTheme();
 
-export default function Collection() {
+export default function AddCollection() {
 
-    const [collectionData, setCollectionData] = useState(0);
-    useEffect(() => {
-        const fetchData = async (req, res) => {
-            const response = await fetch('https://nba-players.herokuapp.com/players-stats')
-            console.log("is this working")
-            const artData = await response.json()
-            setCollectionData(artData)
-        };
+    // const [collectionData, setCollectionData] = useState(0);
+    // useEffect(() => {
+    //     const fetchData = async (req, res) => {
+    //         const response = await fetch('https://nba-players.herokuapp.com/players-stats')
+    //         console.log("is this working")
+    //         const artData = await response.json()
+    //         setCollectionData(artData)
+    //     };
 
-        fetchData()
+    //     fetchData()
 
-    }, [])
+    // }, [])
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider>
       <CssBaseline />
       <AppBar position="relative">
         <Toolbar>
@@ -95,8 +95,8 @@ export default function Collection() {
         <Container sx={{ py: 8 }} maxWidth="md">
           {/* End hero unit */}
           <Grid container spacing={4}>
-            {cards.map((collection) => (
-              <Grid item key={card} xs={12} sm={6} md={4}>
+            {/* {cards.map((collection) => ( */}
+              <Grid item key="" xs={12} sm={6} md={4}>
                 <Card
                   sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
                 >
@@ -123,7 +123,7 @@ export default function Collection() {
                   </CardActions>
                 </Card>
               </Grid>
-            ))}
+            {/* ))} */}
           </Grid>
         </Container>
       </main>
