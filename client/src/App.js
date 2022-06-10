@@ -7,7 +7,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import NotFound from './pages/NotFound';
 import SignUp from './pages/SignUp';
-import Collections from './pages/Collection'
+import Explore from './pages/Explore'
 import SinglePiece from './pages/Single-Piece'
 import Dashboard from './utils/pages/Dashboard';
 import About from './pages/About';
@@ -53,7 +53,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/explore" element={<Collections />} />
+          <Route path="/explore" element={<Explore />} />
 
           <Route path="/single-piece" element={<SinglePiece />} />
           <Route path="/artists" element={<Artists />} />
