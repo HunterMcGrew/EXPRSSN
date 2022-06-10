@@ -28,6 +28,20 @@ function App() {
       <Router>
         <MobileNav isOpen={isOpen} toggle={toggle} />
         <NavBar toggle={toggle} />
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
