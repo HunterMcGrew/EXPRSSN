@@ -1,5 +1,5 @@
 // page to view a collection of pieces
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
 import CameraIcon from '@mui/icons-material/PhotoCamera';
@@ -33,16 +33,18 @@ function Copyright() {
 const theme = createTheme();
 
 export default function allCollections() {
-    const [allCollData, setAllCollData] = useState([]);
-    useEffect(() => {
-        const fetchData = async () => {
-            const response = await fetch('https://nba-players.herokuapp.com/players-stats')
-            const artData = await response.json()
-            setAllCollData(artData)
-            console.log(artData)
-        }
-        fetchData()
-    }, [])
+  const [allCollData, setAllCollData] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch(
+        'https://nba-players.herokuapp.com/players-stats'
+      );
+      const artData = await response.json();
+      setAllCollData(artData);
+      console.log(artData);
+    };
+    fetchData();
+  }, []);
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -73,10 +75,15 @@ export default function allCollections() {
             >
               Album layout
             </Typography>
-            <Typography variant="h5" align="center" color="text.secondary" paragraph>
-              Something short and leading about the collection below—its contents,
-              the creator, etc. Make it short and sweet, but not too short so folks
-              don&apos;t simply skip over it entirely.
+            <Typography
+              variant="h5"
+              align="center"
+              color="text.secondary"
+              paragraph
+            >
+              Something short and leading about the collection below—its
+              contents, the creator, etc. Make it short and sweet, but not too
+              short so folks don&apos;t simply skip over it entirely.
             </Typography>
             <Stack
               sx={{ pt: 4 }}
@@ -95,7 +102,11 @@ export default function allCollections() {
             {cards.map((card) => (
               <Grid item key={card} xs={12} sm={6} md={4}>
                 <Card
-                  sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
+                  sx={{
+                    height: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                  }}
                 >
                   <CardMedia
                     component="img"
@@ -110,9 +121,7 @@ export default function allCollections() {
                     <Typography gutterBottom variant="h5" component="h2">
                       {allCollData.name}
                     </Typography>
-                    <Typography>
-                      {allCollData.description}
-                    </Typography>
+                    <Typography>{allCollData.description}</Typography>
                   </CardContent>
                   <CardActions>
                     <Button size="small">View</Button>

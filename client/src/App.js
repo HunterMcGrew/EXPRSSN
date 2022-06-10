@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { setContext } from '@apollo/client/link/context';
-import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink} from '@apollo/client';
-// Import pages & components
+import {
+  ApolloClient,
+  ApolloProvider,
+  InMemoryCache,
+  createHttpLink,
+} from '@apollo/client';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import NotFound from './pages/NotFound';
 import SignUp from './pages/SignUp';
-import Explore from './pages/Explore'
-import SinglePiece from './pages/Single-Piece'
+import Explore from './pages/Explore';
+import SinglePiece from './pages/Single-Piece';
 import Dashboard from './utils/pages/Dashboard';
 import About from './pages/About';
 // import NavBar from "./components/navbar/index";
@@ -18,18 +22,17 @@ import MobileNav from './components/MobileNav';
 import Artists from './pages/All-Artist';
 // import allCollections from './pages/All-Collections';
 
-
 const httpLink = createHttpLink({
   uri: '/graphql',
-})
+});
 
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('id_token');
-  return{
+  return {
     headers: {
       ...headers,
       authorization: token ? `Bearer ${token}` : '',
-   },
+    },
   };
 });
 
@@ -63,7 +66,6 @@ function App() {
           <Route path='/about' element={<About />} />
 
           <Route path="*" element={<NotFound />} />
-
         </Routes>
         <Footer />
       </Router>

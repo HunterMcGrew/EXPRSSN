@@ -1,29 +1,29 @@
 // about exprssn
-import React from "react";
-import "./css/Home.css";
-import EXPRSSNsign from "./images/EXPRSSNsign.png";
+import React from 'react';
+import './css/Home.css';
+import EXPRSSNsign from './images/EXPRSSNsign.png';
 
 function about() {
   return (
     <div className="container pt-5" id="">
       <h1
         style={{
-          color: "black",
-          textAlign: "center",
-          fontSize: "45px",
-          paddingTop: "5rem",
-          paddingBottom: "2rem",
+          color: 'black',
+          textAlign: 'center',
+          fontSize: '45px',
+          paddingTop: '5rem',
+          paddingBottom: '2rem',
         }}
       >
         ABOUT EXPRSSN
       </h1>
-      <p style={{ textAlign: "center", color: "black", paddingBottom: "1rem" }}>
+      <p style={{ textAlign: 'center', color: 'black', paddingBottom: '1rem' }}>
         Welcome to EXPRSSN, your number one source for all things Art. We are
         dedicated to giving you the very best experience, with a focus on Artist
         Growth, and Community Interaction.
       </p>
 
-      <p style={{ textAlign: "center", color: "black", paddingBottom: "1rem" }}>
+      <p style={{ textAlign: 'center', color: 'black', paddingBottom: '1rem' }}>
         Founded in 2022 by Founders: Alex Ortega, Hunter McGrew, Stephen Kelley,
         Joshua Dominguez, and Gil Benvenitz, EXPRSSN has come a long way from
         its beginnings in Texas. The founders wanted to create a space for
@@ -42,16 +42,16 @@ function about() {
         hesitate to contact us.
       </p>
 
-      <p style={{ textAlign: "center", color: "black", paddingBottom: "1rem" }}>
+      <p style={{ textAlign: 'center', color: 'black', paddingBottom: '1rem' }}>
         Sincerely,
       </p>
 
       <p
         style={{
-          textAlign: "center",
-          color: "black",
-          paddingBottom: "5rem",
-          fontStyle: "italic",
+          textAlign: 'center',
+          color: 'black',
+          paddingBottom: '5rem',
+          fontStyle: 'italic',
         }}
       >
         EXPRSSN
@@ -59,9 +59,9 @@ function about() {
 
       <div
         style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
         }}
       >
         <img src={EXPRSSNsign} alt="sign" className="center"></img>
