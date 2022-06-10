@@ -15,6 +15,7 @@ import Artists from './pages/All-Artist';
 // import allCollections from './pages/All-Collections';
 import SinglePiece from "./pages/Single-Piece";
 // import Collection from "./pages/Collection";
+import Upload from "./pages/Upload";
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -58,7 +59,7 @@ function App() {
           {/* <Route path="/explore" element={<allCollections />} /> */}
           <Route path="/single-piece" element={<SinglePiece />} />
           {/* <Route path="/collection" element={<Collection /> } /> */}
-
+          <Route path="/upload" element={<Upload />} />
           <Route path="*" element={<NotFound />} />
 
         </Routes>
