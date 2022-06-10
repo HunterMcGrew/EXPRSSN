@@ -30,24 +30,24 @@ function Copyright() {
   );
 }
 
-// const theme = createTheme();
+const theme = createTheme();
 
 export default function AddCollection() {
 
-    // const [collectionData, setCollectionData] = useState(0);
-    // useEffect(() => {
-    //     const fetchData = async (req, res) => {
-    //         const response = await fetch('https://nba-players.herokuapp.com/players-stats')
-    //         console.log("is this working")
-    //         const artData = await response.json()
-    //         setCollectionData(artData)
-    //     };
+    const [collectionData, setCollectionData] = useState(0);
+    useEffect(() => {
+        const fetchData = async (req, res) => {
+            const response = await fetch('https://nba-players.herokuapp.com/players-stats')
+            console.log("is this working")
+            const artData = await response.json()
+            setCollectionData(artData)
+        };
 
-    //     fetchData()
+        fetchData()
 
-    // }, [])
+    }, [])
   return (
-    <ThemeProvider>
+    <ThemeProvider theme={theme}>
       <CssBaseline />
       <AppBar position="relative">
         <Toolbar>
