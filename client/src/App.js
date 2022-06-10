@@ -53,25 +53,11 @@ function App() {
       <Router>
         <MobileNav isOpen={isOpen} toggle={toggle} />
         <NavBar toggle={toggle} />
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         <Routes>
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
-          
+
           <Route path="/allcollections" element={<AllCollections />} />
           <Route path="/single-piece" element={<SinglePiece />} />
           <Route path="/artists" element={<Artists />} />
