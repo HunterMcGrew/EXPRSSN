@@ -25,3 +25,11 @@ mutation login($email: String!, $password: String!) {
     }
   }
 `;
+
+// store cloudinary URL to graphql
+export const ADD_PIECE = gql`
+mutation ADD_PIECE($name: String!, $description: String!, $link: String!, $collectionId: ID!, $artist: String!) {
+  addPiece(name: $name, description: $description, link: $link, collectionId: $collectionId, artist: $artist) {
+    _id
+  }
+}`;

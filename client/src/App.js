@@ -18,7 +18,7 @@ import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 import MobileNav from './components/MobileNav';
 import Artists from './pages/All-Artist';
-import allCollections from './pages/AllCollections';
+import AllCollections from './pages/AllCollections';
 // import Collection from "./pages/Collection";
 import Upload from "./pages/Upload";
 
@@ -60,7 +60,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           
-          <Route path="/allcollections" element={<allCollections />} />
+          <Route path="/allcollections" element={<AllCollections />} />
           <Route path="/single-piece" element={<SinglePiece />} />
           {/* <Route path="/collection" element={<Collection /> } /> */}
           <Route path="/upload" element={<Upload />} />
