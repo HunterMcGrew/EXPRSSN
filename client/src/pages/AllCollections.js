@@ -62,7 +62,7 @@ export default function Album() {
               color="text.primary"
               gutterBottom
             >
-              Album layout
+              All Collections
             </Typography>
             <Typography
               variant="h5"
