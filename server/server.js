@@ -44,6 +44,8 @@ app.post("/api/upload", async (req, res) => {
     // need to grab uploadedResponse.created_at and add that to model/typedefs/mutation
     // need to grab uploadedResponse.url and insert it into our mongoDB thru graphql
 
+    // need to grab all the input data from upload.js page also...
+
   } catch (err) {
     if (err) throw err;
     console.log(err);
