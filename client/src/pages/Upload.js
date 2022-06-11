@@ -8,7 +8,7 @@ function Upload() {
 
     const [image, setImage ] = useState("");
     const [ url, setUrl ] = useState("");
-    const uploadImage = (event) => {
+    const uploadImageee = (event) => {
         event.preventDefault();
     const data = new FormData()
     data.append("file", image)
@@ -38,7 +38,9 @@ function Upload() {
         // allows for multiple files to be uploaded if said .files[0]
         // but, button below is only accepting 1 file at a time
         const file = event.target.files[0];
+        
         previewFile(file);
+    
         // if we want to preview file on page 6:45 YT
     };
 
@@ -63,12 +65,29 @@ console.log("fileInputState", fileInputState);
 
     const handleSubmitFile = (event) => {
         event.preventDefault();
+        console.log("submitting on click")
 
-    }
+        if(!previewSource) return;
 
-    const sendImage = (file) => {
+        uploadImage(previewSource);
+    };
 
+    const uploadImage = async (base64EncodedImage) => {
         // function to upload image here
+        // console.log(base64EncodedImage);
+        try {
+
+            await fetch("/api/upload", {
+                method: "POST",
+                body: JSON.stringify({ data: base64EncodedImage }),
+                headers: { "Content-type" : "application/json" }
+            })
+
+        } catch (err) {
+            if (err) throw err;
+            console.log(err);
+        }
+
     };
 
     return (
@@ -81,15 +100,30 @@ console.log("fileInputState", fileInputState);
         {/* then it will push data.url with all this info into our mondoDB thru mutation */}
         {/* looks like I need a "collections" drop down menu? or the ability to ADD a new collection */}
         <p className="uploadLabel is-size-5 has-text-weight-semibold">Piece Name</p>
-        <input className="mt-2 mb-2 input" name="name" type="text" id="name" placeholder="Piece Name" value={userInput.name} onChange={handleUserInputChange}></input>
+
+        <input className="mt-2 mb-2 input" name="name" type="text" id="name" placeholder="Piece Name" value={userInput.name} onChange={handleUserInputChange}>
+        </input>
+
         <p className="uploadLabel is-size-5 has-text-weight-semibold">Description</p>
-        <input className="mt-2 mb-2 input" name="description" type="text" id="description" placeholder="Description" value={userInput.description} onChange={handleUserInputChange}></input>
+
+        <input className="mt-2 mb-2 input" name="description" type="text" id="description" placeholder="Description" value={userInput.description} onChange={handleUserInputChange}>
+        </input>
+
         <p className="uploadLabel is-size-5 has-text-weight-semibold">Artist Name</p>
-        <input className="mt-2 mb-2 input" name="artist" type="text" id="artist" placeholder="Artist Name" value={userInput.artist} onChange={handleUserInputChange}></input>
+
+        <input className="mt-2 mb-2 input" name="artist" type="text" id="artist" placeholder="Artist Name" value={userInput.artist} onChange={handleUserInputChange}>
+        </input>
+
         <p className="uploadLabel is-size-5 has-text-weight-semibold">Collection Name</p>
-        <input className="mt-2 mb-3 input" name="collection" type="text" id="collection" placeholder="Collection Name" value={userInput.collection} onChange={handleUserInputChange}></input>
-        <input className="mt-2 mb-3" type="file" name="image" value={fileInputState} onChange={handleFileInputChange}></input>
-        <button className="button is-dark is-responsive" type="submit" onClick={uploadImage}>Upload</button>
+
+        <input className="mt-2 mb-3 input" name="collection" type="text" id="collection" placeholder="Collection Name" value={userInput.collection} onChange={handleUserInputChange}>
+        </input>
+
+        <input className="mt-2 mb-3" type="file" name="image" value={fileInputState} onChange={handleFileInputChange}>
+        </input>
+
+        <button className="button is-dark is-responsive" type="submit" onClick={handleSubmitFile}>Upload</button>
+
     </form>
 
 </div>
