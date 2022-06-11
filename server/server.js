@@ -41,9 +41,8 @@ app.post("/api/upload", async (req, res) => {
     // uploadedResponse.url is what we need to push into our mongoDB through GraphQL
     console.log("uploadedResponse URL", uploadedResponse.url);
 
-    // need to grab uploadedResponse.created_at and add that to model/typedefs/mutation
-    // actually, it would be easier if we made our own createdAt in models
-    // and used that instead
+    // need to change our model, typedefs, and mutation to include a "createdAt"
+    // so we can sort pictures by date and time.
     // need to grab uploadedResponse.url and insert it into our mongoDB thru graphql
 
     // need to grab all the input data from upload.js page also...
