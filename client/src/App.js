@@ -70,6 +70,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/collection" element={<Collection />} />
           <Route path="*" element={<NotFound />} />
+          
         </Routes>
         <Footer />
       </Router>
