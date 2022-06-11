@@ -40,12 +40,19 @@ app.post("/api/upload", async (req, res) => {
     console.log(uploadedResponse);
     // uploadedResponse.url is what we need to push into our mongoDB through GraphQL
     console.log("uploadedResponse URL", uploadedResponse.url);
+
+    // need to grab uploadedResponse.created_at and add that to model/typedefs/mutation
+    // need to grab uploadedResponse.url and insert it into our mongoDB thru graphql
+
   } catch (err) {
     if (err) throw err;
     console.log(err);
     res.status(500).json({ message: "something went wrong" });
   }
-})
+});
+
+// Dont think we need an app.get for cloudinary since we are going to populate 
+// URL's from our DB. 
 
 // Create a new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async (typeDefs, resolvers) => {
