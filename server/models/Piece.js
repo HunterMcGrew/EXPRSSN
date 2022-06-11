@@ -23,6 +23,10 @@ const pieceSchema = new Schema({
   link: {
     type: String,
   },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
   category: {
     type: Schema.Types.ObjectId,
     ref: 'Category',
