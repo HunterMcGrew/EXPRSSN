@@ -42,6 +42,8 @@ app.post("/api/upload", async (req, res) => {
     console.log("uploadedResponse URL", uploadedResponse.url);
 
     // need to grab uploadedResponse.created_at and add that to model/typedefs/mutation
+    // actually, it would be easier if we made our own createdAt in models
+    // and used that instead
     // need to grab uploadedResponse.url and insert it into our mongoDB thru graphql
 
   } catch (err) {
