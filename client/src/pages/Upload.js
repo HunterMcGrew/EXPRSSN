@@ -74,29 +74,37 @@ console.log("fileInputState", fileInputState);
     return (
 
 <div className="container mt-5 mb-3">
-<div className="is-flex is-justify-content-center">
+<div className="columns">
+<div className="column is-6 is-flex is-justify-content-center">
     <form className="is-flex is-flex-direction-column">
         {/* form input for name, description, collectionId, artist (not required) */}
         {/* then it will push data.url with all this info into our mondoDB thru mutation */}
         {/* looks like I need a "collections" drop down menu? or the ability to ADD a new collection */}
-        <p className="uploadLabel">Piece Name</p>
-        <input className="mt-3 mb-3" name="name" type="text" id="name" placeholder="Piece Name" value={userInput.name} onChange={handleUserInputChange}></input>
-        <p className="uploadLabel">Description</p>
-        <input className="mt-3 mb-3" name="description" type="text" id="description" placeholder="Description" value={userInput.description} onChange={handleUserInputChange}></input>
-        <p className="uploadLabel">Artist Name</p>
-        <input className="mt-3 mb-3" name="artist" type="text" id="artist" placeholder="Artist Name" value={userInput.artist} onChange={handleUserInputChange}></input>
-        <p className="uploadLabel">Collection Name</p>
-        <input className="mt-3 mb-3" name="collection" type="text" id="collection" placeholder="Collection Name" value={userInput.collection} onChange={handleUserInputChange}></input>
-        <input className="mt-3 mb-3" type="file" name="image" value={fileInputState} onChange={handleFileInputChange}></input>
-        <button className="" type="submit" onClick={uploadImage}>Upload</button>
+        <p className="uploadLabel is-size-5 has-text-weight-semibold">Piece Name</p>
+        <input className="mt-2 mb-2 input" name="name" type="text" id="name" placeholder="Piece Name" value={userInput.name} onChange={handleUserInputChange}></input>
+        <p className="uploadLabel is-size-5 has-text-weight-semibold">Description</p>
+        <input className="mt-2 mb-2 input" name="description" type="text" id="description" placeholder="Description" value={userInput.description} onChange={handleUserInputChange}></input>
+        <p className="uploadLabel is-size-5 has-text-weight-semibold">Artist Name</p>
+        <input className="mt-2 mb-2 input" name="artist" type="text" id="artist" placeholder="Artist Name" value={userInput.artist} onChange={handleUserInputChange}></input>
+        <p className="uploadLabel is-size-5 has-text-weight-semibold">Collection Name</p>
+        <input className="mt-2 mb-3 input" name="collection" type="text" id="collection" placeholder="Collection Name" value={userInput.collection} onChange={handleUserInputChange}></input>
+        <input className="mt-2 mb-3" type="file" name="image" value={fileInputState} onChange={handleFileInputChange}></input>
+        <button className="button is-dark is-responsive" type="submit" onClick={uploadImage}>Upload</button>
     </form>
+
 </div>
-    <div className="">
-        <h1>Uploaded image will be displayed here</h1>
-        {previewSource && (
-            <img src={previewSource} style={{height: "250px" }}
-            />
-        )}
+        {/* right side of forum to preview the image you are uploading */}
+    <div className="column is-6 is-flex is-align-items-center is-flex-direction-column">
+        <div className="">
+            <h2 className="is-size-5 mb-3 has-text-centered">Preview</h2>
+            
+            {previewSource && (
+                <img src={previewSource} style={{height: "300px" }} />
+            )}
+            
+            {/* anything above 300px height will look too distorted on full-width images */}
+        </div>
+    </div>
     </div>
 </div>
 
