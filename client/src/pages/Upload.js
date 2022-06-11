@@ -29,16 +29,24 @@ function Upload() {
     // state for file being uploaded 
     const [fileInputState, setFileInputState] = useState("");
     const [selectedFile, setSelectedFile] = useState("");
+    const [previewSource, setPreviewSource] = useState();
     // state for typed form info
     const [userInput, setUserInput] = useState({ name: "", description: "", artist: "", collection: "" });
 
     const handleFileInputChange = (event) => {
         event.preventDefault();
-        // allows for multiple files to be uploaded
+        // allows for multiple files to be uploaded if said .files[0]
         // but, button below is only accepting 1 file at a time
-        const file = event.target.file;
+        const file = event.target.files[0];
+        previewFile(file);
         // if we want to preview file on page 6:45 YT
     };
+
+    const previewFile = (file) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onloadend = () => { setPreviewSource(reader.result) };
+    }
 
     const handleUserInputChange = (event) => {
     
@@ -51,8 +59,14 @@ function Upload() {
     };
 
 console.log("userInput", userInput);
+console.log("fileInputState", fileInputState);
 
-    const sendImage = () => {
+    const handleSubmitFile = (event) => {
+        event.preventDefault();
+
+    }
+
+    const sendImage = (file) => {
 
         // function to upload image here
     };
@@ -77,9 +91,12 @@ console.log("userInput", userInput);
         <button className="" type="submit" onClick={uploadImage}>Upload</button>
     </form>
 </div>
-    <div>
+    <div className="">
         <h1>Uploaded image will be displayed here</h1>
-        <img src={url}/>
+        {previewSource && (
+            <img src={previewSource} style={{height: "250px" }}
+            />
+        )}
     </div>
 </div>
 
