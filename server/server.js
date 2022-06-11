@@ -45,10 +45,6 @@ app.post("/api/upload", async (req, res) => {
     // uploadedResponse.url is what we need to push into our mongoDB through GraphQL
     console.log("uploadedResponse URL", uploadedResponse.url);
 
-    Piece.create(req.body)
-      .then((post) => res.json(post))
-      .catch((err) => res.status(500).json(err));
-
     //bring in the model and do the change heres
     // need to change our model, typedefs, and mutation to include a "createdAt"
 
