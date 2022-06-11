@@ -26,25 +26,55 @@ function Upload() {
 
     .catch(err => console.log(err))
     }
+    // state for file being uploaded 
+    const [fileInputState, setFileInputState] = useState("");
+    const [selectedFile, setSelectedFile] = useState("");
+    // state for typed form info
+    const [userInput, setUserInput] = useState({ name: "", description: "", artist: "", collection: "" });
+
+    const handleFileInputChange = (event) => {
+        event.preventDefault();
+        // allows for multiple files to be uploaded
+        // but, button below is only accepting 1 file at a time
+        const file = event.target.file;
+        // if we want to preview file on page 6:45 YT
+    };
+
+    const handleUserInputChange = (event) => {
+    
+        const { name, value } = event.target;
+
+        setUserInput({
+            ...userInput,
+            [name]: value,
+        });
+    };
+
+console.log("userInput", userInput);
+
+    const sendImage = () => {
+
+        // function to upload image here
+    };
 
     return (
 
-<div className="container ">
+<div className="container mt-5 mb-3">
 <div className="is-flex is-justify-content-center">
     <form className="is-flex is-flex-direction-column">
         {/* form input for name, description, collectionId, artist (not required) */}
         {/* then it will push data.url with all this info into our mondoDB thru mutation */}
         {/* looks like I need a "collections" drop down menu? or the ability to ADD a new collection */}
-        <p>Piece Name</p>
-        <input className="mt-3 mb-3" type="text" id="name"></input>
-        <p>Description</p>
-        <input className="mt-3 mb-3" type="text" id="description"></input>
-        <p>Artist Name</p>
-        <input className="mt-3 mb-3" type="text" id="artist"></input>
-        <p>Collection Name</p>
-        <input className="mt-3 mb-3" type="text" id="collection"></input>
-        <input className="mt-3 mb-3" type="file" onChange= {(e)=> setImage(e.target.files[0])}></input>
-        <button onClick={uploadImage}>Upload</button>
+        <p className="uploadLabel">Piece Name</p>
+        <input className="mt-3 mb-3" name="name" type="text" id="name" placeholder="Piece Name" value={userInput.name} onChange={handleUserInputChange}></input>
+        <p className="uploadLabel">Description</p>
+        <input className="mt-3 mb-3" name="description" type="text" id="description" placeholder="Description" value={userInput.description} onChange={handleUserInputChange}></input>
+        <p className="uploadLabel">Artist Name</p>
+        <input className="mt-3 mb-3" name="artist" type="text" id="artist" placeholder="Artist Name" value={userInput.artist} onChange={handleUserInputChange}></input>
+        <p className="uploadLabel">Collection Name</p>
+        <input className="mt-3 mb-3" name="collection" type="text" id="collection" placeholder="Collection Name" value={userInput.collection} onChange={handleUserInputChange}></input>
+        <input className="mt-3 mb-3" type="file" name="image" value={fileInputState} onChange={handleFileInputChange}></input>
+        <button className="" type="submit" onClick={uploadImage}>Upload</button>
     </form>
 </div>
     <div>
@@ -67,7 +97,7 @@ export default Upload;
     //cloudinary recieves request  from resolver and handles the upload. it responds with data about where it is stored
     // our server intercepts the response --- still inside the resolver and looks at the data and talks to our db to save the important image data (url source and who uploaded?)
 
-    // .then(response => {User.findOneAndUpdate(user_id, images: {$set: dataToAddAboutImage})})
+    // .then(response => {User.findOneAndUpdate(user_id, collection: {$set: dataToAddAboutImage})})
 
     // db receieves request with data and stores it in correct collection and sends successful response back to server
     // .then(dbResponse => res.json(dbResponse))
