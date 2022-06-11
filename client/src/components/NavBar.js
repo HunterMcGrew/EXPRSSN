@@ -11,13 +11,13 @@ const NavBar = ({ toggle }) => {
     >
       {/* Logo / Name */}
       <div className="logo" id="">
-        <a href="/Home">
+        <a href="/">
           <img src={logo} alt="logo" height={200} width={200} />
         </a>
       </div>
       {/* NavBar Elements */}
       <nav className="mr-5" id="desktopNav">
-        <a style={{ color: "black", aHover: "white" }} href="/Home" className="mr-3 ml-3">
+        <a style={{ color: "black", aHover: "white" }} href="/" className="mr-3 ml-3">
           Home
         </a>
 

@@ -1,16 +1,20 @@
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
+// auth middleware for tokens -- payload: { username, email, _id }
+const { authMiddleware } = require('./utils/auth');
 const { cloudinary } = require("./utils/cloudinary");
 
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 const app = express();
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+  // use authMiddleware
+  context: authMiddleware,
 });
 
 app.use(express.urlencoded({ limit: "50mb", extended: true }));
@@ -24,6 +28,7 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 // post route for /upload page 
+// uploads image to cloudinary
 app.post("/api/upload", async (req, res) => {
   try {
     const fileString = req.body.data;
@@ -31,7 +36,10 @@ app.post("/api/upload", async (req, res) => {
     const uploadedResponse = await cloudinary.uploader.upload(fileString, {
       upload_preset: "project3"
     });
+    res.json();
     console.log(uploadedResponse);
+    // uploadedResponse.url is what we need to push into our mongoDB through GraphQL
+    console.log("uploadedResponse URL", uploadedResponse.url);
   } catch (err) {
     if (err) throw err;
     console.log(err);

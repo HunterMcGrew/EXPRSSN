@@ -133,7 +133,7 @@ console.log("fileInputState", fileInputState);
             <h2 className="is-size-5 mb-3 has-text-centered">Preview</h2>
             
             {previewSource && (
-                <img src={previewSource} style={{height: "300px" }} />
+                <img src={previewSource} alt="preview" style={{height: "300px" }} />
             )}
             
             {/* anything above 300px height will look too distorted on full-width images */}
