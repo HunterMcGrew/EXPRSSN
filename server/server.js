@@ -46,6 +46,8 @@ app.post("/api/upload", async (req, res) => {
     // and used that instead
     // need to grab uploadedResponse.url and insert it into our mongoDB thru graphql
 
+    // need to grab all the input data from upload.js page also...
+
   } catch (err) {
     if (err) throw err;
     console.log(err);
