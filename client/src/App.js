@@ -18,8 +18,8 @@ import About from './pages/About';
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 import MobileNav from './components/MobileNav';
-import Artists from './pages/All-Artist';
-import AllCollections from './pages/AllCollections';
+import Artists from './pages/AllArtistsG';
+import AllCollections from './pages/AllCollectionsG';
 import Collection from './pages/Collection';
 
 const httpLink = createHttpLink({
