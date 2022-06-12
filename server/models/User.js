@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const { Schema, model, Types } = require("mongoose");
+const { Schema, model } = require("mongoose");
 const bcrypt = require('bcrypt');
 
 const formatDate = (date) => {
@@ -10,10 +10,6 @@ const formatDate = (date) => {
 
 const piecesSchema = new Schema({
 
-  pieceId: {
-      type: Schema.Types.ObjectId,
-      default: new Types.ObjectId
-  },
   name: {
       type: String,
       required: true,
@@ -40,7 +36,8 @@ const piecesSchema = new Schema({
 {
   toJSON: {
       getters: true
-  }
+  },
+  id: false,
 });
 
 const userSchema = new Schema({
@@ -61,7 +58,13 @@ const userSchema = new Schema({
     required: true,
     minlength: 5,
   },
-  pieces: [piecesSchema]
+  pieces: [piecesSchema],
+  // pieces: [
+  //   {
+  //     type: Schema.Types.ObjectId,
+  //     ref: "piece",
+  //   },
+  // ],
 },
 {
   toJSON: {

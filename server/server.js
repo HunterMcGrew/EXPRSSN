@@ -7,8 +7,6 @@ const mongoose = require('mongoose');
 const { cloudinary } = require("./utils/cloudinary");
 const parseJwt = require("./utils/decode");
 const User = require("./models/User");
-const Collection = require("./models/Collection");
-const Piece = require("./models/Piece");
 
 const { typeDefs, resolvers } = require("./schemas");
 const db = require("./config/connection");
