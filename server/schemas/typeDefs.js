@@ -6,30 +6,6 @@ const typeDefs = gql`
     username: String!
     email: String!
     password: String!
-    collections: [Collection]
-  }
-
-  type Piece {
-    _id: ID!
-    name: String!
-    description: String!
-    artist: String!
-    image: String!
-    link: String!
-    category: [Category]
-  }
-
-  type Category {
-    _id: ID!
-    name: String!
-    description: String!
-    pieces: [Piece]
-  }
-
-  type Collection {
-    _id: ID!
-    name: String!
-    description: String!
     pieces: [Piece]
   }
 
@@ -40,13 +16,7 @@ const typeDefs = gql`
 
   type Query {
     Users: [User]
-    Pieces: [Piece]
-    Categories: [Category]
-    Collections: [Collection]
     User(_id: ID!): User
-    Piece(_id: ID!): Piece
-    Category(_id: ID!): Category
-    Collection(_id: ID!): Collection
     me: User
 
   }
@@ -54,8 +24,6 @@ const typeDefs = gql`
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addCollection(name: String!, description: String!, userId:ID!): Collection
-    addPiece(name: String!, artist: String!, description: String!, link: String!, collectionId:ID!): Collection
   }
 `;
 
