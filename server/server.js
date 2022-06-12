@@ -59,80 +59,19 @@ app.post("/api/upload", async (req, res) => {
 
     // uploadedResponse.url is what we need to push into our mongoDB through GraphQL
     console.log("uploadedResponse URL", uploadedResponse.url);
-    
+      // on upload, find user, push in data to pieces array
       const addPiece = await User.findOneAndUpdate(
           { _id: decoded.data._id },
-          // pushes reactions array 
+          // pushes pieces array 
           { $push: { pieces: { name: inputData.name, artist: inputData.artist, description: inputData.description, link: uploadedResponse.url }}},
           { new: true, runValidators: true }
       )
       .populate({
           path: "pieces",
           select: "-__v"
-      })
+      });
     
-    //get user by id, get all collections
-    // const userCollections = await User.findOneAndUpdate({ _id: decoded.data._id })
-    // .populate({path: "collections", select: "-__v"});
-
-    // if it doesn't already exist make a new one
-    // if (userCollections.collections !== inputData.collection) {
-    //   const newCollection = await Collection.create({ name: inputData.collection, artist: inputData.artist, description: inputData.description })
-    //   .then(({ name }) => {
-    //     return User.findOneAndUpdate(
-    //       { _id: decoded.data._id },
-    //       { $push: { collections: name }},
-    //       { new: true, runValidators: true }
-    //     )
-    //   }
-    //   );
-    // } else {
-    //   // if it does exist findOneAndUpdate
-    //   const existingCollection = await Collection.findOneAndUpdate(
-    //     { name: inputData.collection },
-    //     { $push: {piece: {name: inputData.name, artist: inputData.artist, description: inputData.description, link: uploadedResponse.url } } },
-    //     { new: true, runValidators: true }
-    //     .then(({ name }) => {
-    //       console.log("name", name);
-    //       return User.findOneAndUpdate(
-    //         { _id: decoded.data._id },
-    //         { $push: { collections: name }},
-    //         { new: true, runValidators: true }
-    //       )
-    //     }
-    //   ));
-    // };
     
-
-    // const pushUser = await User.find(
-    //   { _id: decoded.data._id },
-    //   { $push: {collections: newCollection || existingCollection}}
-      
-    // );  
-    
-
-    // const collection = Collection.find({name: inputData.collection});
-
-    // find the user that's uplaoding context from JWT ({_id })
-
-    // check for collection name if exists
-    // if it doesnt exist create one
-
-    // URL from uploadedResponse.url and set/w/e it into piece 
-
-    // that piece is in the collection
-
-    // the collection is set into user_collection
-
-
-
-    //bring in the model and do the change heres
-    // need to change our model, typedefs, and mutation to include a "createdAt"
-
-    // so we can sort pictures by date and time.
-    // need to grab uploadedResponse.url and insert it into our mongoDB thru graphql
-
-    // need to grab all the input data from upload.js page also...
     res.json({ messsage: "Image uploaded and added to database." });
   } catch (err) {
     if (err) throw err;
@@ -140,9 +79,6 @@ app.post("/api/upload", async (req, res) => {
     res.status(500).json({ message: "something went wrong" });
   }
 });
-
-// Dont think we need an app.get for cloudinary since we are going to populate
-// URL's from our DB.
 
 // Create a new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async (typeDefs, resolvers) => {
