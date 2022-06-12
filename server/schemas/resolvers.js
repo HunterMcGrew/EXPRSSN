@@ -1,32 +1,14 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { User, Collection, Piece, Category } = require("../models");
+const { User } = require("../models");
 const { signToken } = require("../utils/auth");
 const bcrypt = require("bcrypt");
 const resolvers = {
   Query: {
     Users: async () => {
-      return User.find({});
-    },
-    Pieces: async () => {
-      return Piece.find({});
-    },
-    Categories: async () => {
-      return Category.find({});
-    },
-    Collections: async () => {
-      return Collection.find({});
+      return User.find({}).populate({ path: "pieces", select: "-__v" })
     },
     User: async (parent, {_id} ) => {
-      return User.findOne({_id})
-    },
-    Piece: async (parent, {_id} ) => {
-      return Piece.findOne({_id});
-    },
-    Collection: async (parent, {_id} ) => {
-      return Collection.findOne({_id});
-    },
-    Category: async (parent, {_id} ) => {
-      return Category.findOne({_id});
+      return User.findOne({_id}).populate({ path: "pieces", select: "-__v" })
     },
     me: async (parent, args, context) => {
       if (context.user) {
@@ -74,57 +56,8 @@ const resolvers = {
       return { token, user };
     },
 
-    addCollection: async (parent, { name, description, userId }, context) => {
-      const collection = await Collection.create({ name, description });
-
-      if (context.user) {
-        return User.findOneAndUpdate(
-          { _id: userId },
-          {
-            $addToSet: { collections: collection.id },
-          },
-          {
-            new: true,
-            runValidators: true,
-          }
-        );
-      }
-      // If user attempts to execute this mutation and isn't logged in, throw an error
-      throw new AuthenticationError("You need to be logged in!");
-    },
-
-    addPiece: async (parent, { name, description, artist, link, collection }, context) => {
-      // const findMe = await User.findOne({ _id: context.user._id });
-
-      
-      const piece = await Piece.create({ name, description, link });
-
-      if (context.user) {
-        return Collection.findOneAndUpdate(
-          { _id: collectionId },
-          {
-            $addToSet: { pieces: piece.id },
-          },
-          {
-            new: true,
-            runValidators: true,
-          }
-        );
-      }
-      // If user attempts to execute this mutation and isn't logged in, throw an error
-      throw new AuthenticationError("You need to be logged in!");
-    },
-
-   
   },
-  // createVote: async (parent, { _id, techNum }) => {
-  //   const vote = await Matchup.findOneAndUpdate(
-  //     { _id },
-  //     { $inc: { [`tech${techNum}_votes`]: 1 } },
-  //     { new: true }
-  //   );
-  //   return vote;
-  // },
+
 };
 
 module.exports = resolvers;
