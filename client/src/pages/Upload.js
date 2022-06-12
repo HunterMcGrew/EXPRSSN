@@ -31,7 +31,7 @@ function Upload() {
     const [selectedFile, setSelectedFile] = useState("");
     const [previewSource, setPreviewSource] = useState();
     // state for typed form info
-    const [userInput, setUserInput] = useState({ name: "", description: "", artist: "", collection: "" });
+    const [userInput, setUserInput] = useState({ name: "", description: "", artist: "",  });
 
     const userContext = React.createContext('_id');
 
@@ -77,6 +77,7 @@ console.log("fileInputState", fileInputState);
     const uploadImage = async (base64EncodedImage) => {
         // function to upload image here
         // console.log(base64EncodedImage);
+        // grabs JWT token from local storage so we can decode it
         let token = localStorage.getItem("id_token");
         try {
 
@@ -117,11 +118,6 @@ console.log("fileInputState", fileInputState);
         <p className="uploadLabel is-size-5 has-text-weight-semibold">Artist Name</p>
 
         <input className="mt-2 mb-2 input" name="artist" type="text" id="artist" placeholder="Artist Name" value={userInput.artist} onChange={handleUserInputChange}>
-        </input>
-
-        <p className="uploadLabel is-size-5 has-text-weight-semibold">Collection Name</p>
-
-        <input className="mt-2 mb-3 input" name="collection" type="text" id="collection" placeholder="Collection Name" value={userInput.collection} onChange={handleUserInputChange}>
         </input>
 
         <input className="mt-2 mb-3" type="file" name="image" value={fileInputState} onChange={handleFileInputChange}>
