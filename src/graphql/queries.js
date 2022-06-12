@@ -9,16 +9,14 @@ export const users = /* GraphQL */ `
       username
       email
       password
-      collections {
+      pieces {
         _id
         name
+        artist
         description
-        pieces {
-          _id
-          name
-          description
-          image
-        }
+        link
+        createdAt
+        userId
       }
     }
   }

@@ -17,6 +17,8 @@ import Link from '@mui/material/Link';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { IconButton, TextField } from '@mui/material';
 import { collectFields } from 'graphql/execution/execute';
+import { QUERY_ALL_USERS } from '../utils/queries';
+import { useQuery } from '@apollo/client';
 
 const theme = createTheme();
 
@@ -69,6 +71,8 @@ const collectionData = [
   },
 ];
 
+
+
 //  The actual search bar HTML element
 const SearchBar = ({ setSearchQuery }) => (
   <form style={{ display: 'flex', justifyContent: 'center' }}>
@@ -101,6 +105,12 @@ const filterData = (query, data) => {
 export default function Album() {
   const [searchQuery, setSearchQuery] = useState('');
   const dataFiltered = filterData(searchQuery, collectionData);
+  const { data } = useQuery(QUERY_ALL_USERS);
+  console.log({data});
+const allUserPieces = data.Users[0].pieces;
+console.log(allUserPieces);
+
+  
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -151,9 +161,10 @@ export default function Album() {
             setSearchQuery={setSearchQuery}
           />
           <Grid container spacing={4}>
-            {dataFiltered.map((collection) => (
-              <Grid item key={collection.value} xs={12} sm={6} md={3}>
-                <Card
+            {allUserPieces.map((collection) => (
+              <Grid item key={collection.name} xs={12} sm={6} md={3}>
+                 <Link to={`/products/${collection._id}`}>
+                   <Card
                   sx={{
                     height: '100%',
                     display: 'flex',
@@ -166,7 +177,7 @@ export default function Album() {
                       // 16:9
                       pt: '1.25%',
                     }}
-                    image="https://source.unsplash.com/random"
+                    image={collection.link}
                     alt="random"
                   />
                   <CardContent sx={{ flexGrow: 1 }}>
@@ -174,15 +185,12 @@ export default function Album() {
                       {collection.name}
                     </Typography>
                     <Typography>
-                      This is a media card. You can use this section to describe
-                      the content.
+                     {collection.description}
                     </Typography>
                   </CardContent>
-                  <CardActions>
-                    <Button size="small">View</Button>
-                    <Button size="small">Edit</Button>
-                  </CardActions>
                 </Card>
+                 </Link>
+               
               </Grid>
             ))}
           </Grid>
