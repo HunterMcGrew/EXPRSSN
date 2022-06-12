@@ -28,60 +28,6 @@ query QUERY_ALL_USERS {
 `;
 
 
-export const QUERY_ALL_PIECES = gql` 
-query QUERY_ALL_PIECES {
-    Pieces {
-      _id
-      name
-      description
-      image
-      category {
-        _id
-        name
-        description
-      }
-    }
-  }
-  `;
-
-
-export const QUERY_ALL_COLLECTIONS = gql`
-query QUERY_ALL_COLLECTIONS {
-    Collections {
-      _id
-      name
-      description
-      pieces {
-        name
-        _id
-        description
-        image
-        category {
-          _id
-          name
-          description
-        }
-      }
-    }
-  }
-`;
-
-export const QUERY_ALL_CATEGORIES = gql`
-query QUERY_ALL_CATEGORIES {
-    Categories {
-      _id
-      name
-      pieces {
-        name
-        _id
-        image
-        description
-      }
-    }
-  }
-   
-`;
-
 // END GET ALL QUERIES
 
 // GET SINGLE QUERIES
@@ -101,16 +47,6 @@ query QUERY_USERS($id: ID!) {
     }
   }
 }
-  
-`;
-
-export const QUERY_CATEGORY = gql`
-query QUERY_COLLECTION($id: ID!) {
-    Category(_id: $id) {
-      _id
-      name
-    }
-  }
   
 `;
 
