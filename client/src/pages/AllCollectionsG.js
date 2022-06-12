@@ -106,11 +106,10 @@ export default function Album() {
   const [searchQuery, setSearchQuery] = useState('');
   const dataFiltered = filterData(searchQuery, collectionData);
   const { data } = useQuery(QUERY_ALL_USERS);
-let user;
- console.log({data});
-if (data) {
-  user = data.user;
-};
+  console.log({data});
+const allUserPieces = data.Users[0].pieces;
+console.log(allUserPieces);
+
   
   return (
     <ThemeProvider theme={theme}>
@@ -162,9 +161,10 @@ if (data) {
             setSearchQuery={setSearchQuery}
           />
           <Grid container spacing={4}>
-            {dataFiltered.map((collection) => (
-              <Grid item key={collection.value} xs={12} sm={6} md={3}>
-                <Card
+            {allUserPieces.map((collection) => (
+              <Grid item key={collection.name} xs={12} sm={6} md={3}>
+                 <Link to={`/products/${collection._id}`}>
+                   <Card
                   sx={{
                     height: '100%',
                     display: 'flex',
@@ -177,7 +177,7 @@ if (data) {
                       // 16:9
                       pt: '1.25%',
                     }}
-                    image="https://source.unsplash.com/random"
+                    image={collection.link}
                     alt="random"
                   />
                   <CardContent sx={{ flexGrow: 1 }}>
@@ -185,15 +185,12 @@ if (data) {
                       {collection.name}
                     </Typography>
                     <Typography>
-                      This is a media card. You can use this section to describe
-                      the content.
+                     {collection.description}
                     </Typography>
                   </CardContent>
-                  <CardActions>
-                    <Button size="small">View</Button>
-                    <Button size="small">Edit</Button>
-                  </CardActions>
                 </Card>
+                 </Link>
+               
               </Grid>
             ))}
           </Grid>
