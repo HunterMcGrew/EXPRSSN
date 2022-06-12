@@ -17,6 +17,8 @@ import Link from '@mui/material/Link';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { IconButton, TextField } from '@mui/material';
 import { collectFields } from 'graphql/execution/execute';
+import { QUERY_ALL_USERS } from '../utils/queries';
+import { useQuery } from '@apollo/client';
 
 const theme = createTheme();
 
@@ -69,6 +71,8 @@ const collectionData = [
   },
 ];
 
+
+
 //  The actual search bar HTML element
 const SearchBar = ({ setSearchQuery }) => (
   <form style={{ display: 'flex', justifyContent: 'center' }}>
@@ -101,6 +105,13 @@ const filterData = (query, data) => {
 export default function Album() {
   const [searchQuery, setSearchQuery] = useState('');
   const dataFiltered = filterData(searchQuery, collectionData);
+  const { data } = useQuery(QUERY_ALL_USERS);
+let user;
+ console.log({data});
+if (data) {
+  user = data.user;
+};
+  
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
