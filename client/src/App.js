@@ -19,9 +19,9 @@ import Footer from './components/Footer';
 import MobileNav from './components/MobileNav';
 import Artists from './pages/AllArtistsG';
 import AllCollections from './pages/AllCollectionsG';
-import Collection from './pages/Collection';
+import Collection from './pages/Piece';
 // import Collection from "./pages/Collection";
-import Upload from "./pages/Upload";
+import Upload from './pages/Upload';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -55,14 +55,14 @@ function App() {
       <Router>
         <MobileNav isOpen={isOpen} toggle={toggle} />
         <NavBar toggle={toggle} />
-        
+
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
 
           <Route path="/explore" element={<AllCollections />} />
-          <Route path="/single-piece" element={<SinglePiece />} />
+          <Route path="/single-piece/:id" element={<SinglePiece />} />
           {/* <Route path="/collection" element={<Collection /> } /> */}
           <Route path="/upload" element={<Upload />} />
           <Route path="/artists" element={<Artists />} />
@@ -70,7 +70,6 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/collection" element={<Collection />} />
           <Route path="*" element={<NotFound />} />
-          
         </Routes>
         <Footer />
       </Router>

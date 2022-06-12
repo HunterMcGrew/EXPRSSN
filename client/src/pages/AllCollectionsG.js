@@ -71,8 +71,6 @@ const collectionData = [
   },
 ];
 
-
-
 //  The actual search bar HTML element
 const SearchBar = ({ setSearchQuery }) => (
   <form style={{ display: 'flex', justifyContent: 'center' }}>
@@ -104,100 +102,112 @@ const filterData = (query, data) => {
 
 export default function Album() {
   const [searchQuery, setSearchQuery] = useState('');
-  const dataFiltered = filterData(searchQuery, collectionData);
   const { data } = useQuery(QUERY_ALL_USERS);
-  console.log({data});
-const allUserPieces = data.Users[0].pieces;
-console.log(allUserPieces);
+  if (data) {
+    const piecesArr = [];
+    console.log(piecesArr);
+    console.log(data.Users);
+    let dataUsers = data.Users;
 
-  
-  return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
+    for (let i = 0; i < dataUsers.length; i++) {
+      const user = data.Users[i];
+      console.log(user);
+      const userPieces = data.Users[i].pieces;
+      console.log(userPieces);
+      for (let j = 0; j < userPieces.length; j++) {
+        console.log(user.pieces);
+        piecesArr.push(user.pieces[j]);
+      }
+    }
+    console.log(piecesArr);
+    const dataFiltered = filterData(searchQuery, piecesArr);
+    console.log(dataFiltered);
+    // console.log('all users: ' + allUserPieces);
 
-      <main>
-        {/* Hero unit */}
-        <Box
-          sx={{
-            bgcolor: 'background.paper',
-            pt: 8,
-            pb: 6,
-          }}
-        >
-          <Container maxWidth="sm">
-            <Typography
-              component="h1"
-              variant="h2"
-              align="center"
-              color="text.primary"
-              gutterBottom
-            >
-              All Collections
-            </Typography>
-            <Typography
-              variant="h5"
-              align="center"
-              color="text.secondary"
-              paragraph
-            >
-              Search for some of your favorite collections
-            </Typography>
-            <Stack
-              sx={{ pt: 4 }}
-              direction="row"
-              spacing={2}
-              justifyContent="center"
-            >
-              <Button variant="contained">Collections</Button>
-              <Button variant="outlined">Artists</Button>
-            </Stack>
+    return (
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+
+        <main>
+          {/* Hero unit */}
+          <Box
+            sx={{
+              bgcolor: 'background.paper',
+              pt: 8,
+              pb: 6,
+            }}
+          >
+            <Container maxWidth="sm">
+              <Typography
+                component="h1"
+                variant="h2"
+                align="center"
+                color="text.primary"
+                gutterBottom
+              >
+                All Collections
+              </Typography>
+              <Typography
+                variant="h5"
+                align="center"
+                color="text.secondary"
+                paragraph
+              >
+                Search for some of your favorite collections
+              </Typography>
+              <Stack
+                sx={{ pt: 4 }}
+                direction="row"
+                spacing={2}
+                justifyContent="center"
+              >
+                <Button variant="contained">Collections</Button>
+                <Button variant="outlined">Artists</Button>
+              </Stack>
+            </Container>
+          </Box>
+          <Container sx={{ py: 4 }}>
+            {/* End hero unit */}
+
+            <SearchBar
+              searchQuery={searchQuery}
+              setSearchQuery={setSearchQuery}
+            />
+            <Grid container spacing={4}>
+              {dataFiltered.map((collection) => (
+                <Grid item key={collection._id} xs={12} sm={6} md={3}>
+                  <Link to={`/products/${collection._id}`}>
+                    <Card
+                      sx={{
+                        height: '100%',
+                        display: 'flex',
+                        flexDirection: 'column',
+                      }}
+                    >
+                      <CardMedia
+                        component="img"
+                        sx={{
+                          // 16:9
+                          pt: '1.25%',
+                        }}
+                        image={collection.link}
+                        alt="random"
+                      />
+                      <CardContent sx={{ flexGrow: 1 }}>
+                        <Typography gutterBottom variant="h5" component="h2">
+                          {collection.name}
+                        </Typography>
+                        <Typography>{collection.description}</Typography>
+                      </CardContent>
+                    </Card>
+                  </Link>
+                </Grid>
+              ))}
+            </Grid>
           </Container>
-        </Box>
-        <Container sx={{ py: 4 }}>
-          {/* End hero unit */}
-
-          <SearchBar
-            searchQuery={searchQuery}
-            setSearchQuery={setSearchQuery}
-          />
-          <Grid container spacing={4}>
-            {allUserPieces.map((collection) => (
-              <Grid item key={collection.name} xs={12} sm={6} md={3}>
-                 <Link to={`/products/${collection._id}`}>
-                   <Card
-                  sx={{
-                    height: '100%',
-                    display: 'flex',
-                    flexDirection: 'column',
-                  }}
-                >
-                  <CardMedia
-                    component="img"
-                    sx={{
-                      // 16:9
-                      pt: '1.25%',
-                    }}
-                    image={collection.link}
-                    alt="random"
-                  />
-                  <CardContent sx={{ flexGrow: 1 }}>
-                    <Typography gutterBottom variant="h5" component="h2">
-                      {collection.name}
-                    </Typography>
-                    <Typography>
-                     {collection.description}
-                    </Typography>
-                  </CardContent>
-                </Card>
-                 </Link>
-               
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
-      </main>
-      {/* Footer */}
-      {/* <Box sx={{ bgcolor: 'background.paper', p: 6 }} component="footer">
+        </main>
+        {/* Footer */}
+        {/* <Box sx={{ bgcolor: 'background.paper', p: 6 }} component="footer">
         <Typography variant="h6" align="center" gutterBottom>
           Footer
         </Typography>
@@ -211,7 +221,62 @@ console.log(allUserPieces);
         </Typography>
         <Copyright />
       </Box> */}
-      {/* End footer */}
-    </ThemeProvider>
-  );
+        {/* End footer */}
+      </ThemeProvider>
+    );
+  } else {
+    return (
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+
+        <main>
+          {/* Hero unit */}
+          <Box
+            sx={{
+              bgcolor: 'background.paper',
+              pt: 8,
+              pb: 6,
+            }}
+          >
+            <Container maxWidth="sm">
+              <Typography
+                component="h1"
+                variant="h2"
+                align="center"
+                color="text.primary"
+                gutterBottom
+              >
+                All Collections
+              </Typography>
+              <Typography
+                variant="h5"
+                align="center"
+                color="text.secondary"
+                paragraph
+              >
+                Search for some of your favorite collections
+              </Typography>
+              <Stack
+                sx={{ pt: 4 }}
+                direction="row"
+                spacing={2}
+                justifyContent="center"
+              >
+                <Button variant="contained">Collections</Button>
+                <Button variant="outlined">Artists</Button>
+              </Stack>
+            </Container>
+          </Box>
+          <Container sx={{ py: 4 }}>
+            {/* End hero unit */}
+
+            <SearchBar
+              searchQuery={searchQuery}
+              setSearchQuery={setSearchQuery}
+            />
+          </Container>
+        </main>
+      </ThemeProvider>
+    );
+  }
 }
