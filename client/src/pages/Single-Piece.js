@@ -1,8 +1,12 @@
 import React from "react";
 import test from "./images/test.jpg";
+import { useQuery } from "@apollo/client";
+import { QUERY_USER } from "../utils/queries";
 // page to view a single piece of art
 
-function singlePiece() {
+function SinglePiece() {
+
+
     return(
 
         <div className="">
@@ -40,4 +44,4 @@ function singlePiece() {
     );
 };
 
-export default singlePiece;
+export default SinglePiece;

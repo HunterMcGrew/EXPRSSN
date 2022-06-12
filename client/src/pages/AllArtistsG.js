@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import SearchIcon from '@mui/icons-material/Search';
 import Card from '@mui/material/Card';
@@ -19,6 +18,7 @@ import { IconButton, TextField } from '@mui/material';
 import { collectFields } from 'graphql/execution/execute';
 import { QUERY_ALL_USERS } from '../utils/queries';
 import { useQuery } from '@apollo/client';
+import { Link as NewLink } from "react-router-dom";
 
 const theme = createTheme();
 
@@ -131,7 +131,7 @@ export default function Album() {
             <Grid container spacing={4}>
               {dataFiltered.map((collection) => (
                 <Grid item key={collection._id} xs={12} sm={6} md={3}>
-                  <Link to={{ pathname: `/single-piece/${collection._id}` }}>
+                  <NewLink to={`/single-piece/${collection._id}`} >
                     <Card
                       sx={{
                         height: '100%',
@@ -155,7 +155,7 @@ export default function Album() {
                         <Typography>{collection.description}</Typography>
                       </CardContent>
                     </Card>
-                  </Link>
+                  </NewLink>
                 </Grid>
               ))}
             </Grid>
