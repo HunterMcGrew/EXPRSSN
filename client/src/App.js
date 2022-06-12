@@ -12,7 +12,7 @@ import Login from './pages/Login';
 import NotFound from './pages/NotFound';
 import SignUp from './pages/SignUp';
 import SinglePiece from './pages/Single-Piece';
-import Dashboard from './utils/pages/Dashboard';
+import Dashboard from './pages/Dashboard';
 import About from './pages/About';
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
