@@ -58,12 +58,13 @@ const userSchema = new Schema({
     required: true,
     minlength: 5,
   },
-  pieces: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "piece",
-    },
-  ],
+  pieces: [piecesSchema],
+  // pieces: [
+  //   {
+  //     type: Schema.Types.ObjectId,
+  //     ref: "piece",
+  //   },
+  // ],
 },
 {
   toJSON: {
