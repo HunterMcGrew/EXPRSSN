@@ -1,47 +1,80 @@
-import React from "react";
-import test from "./images/test.jpg";
-import { useQuery } from "@apollo/client";
-import { QUERY_USER } from "../utils/queries";
+import React from 'react';
+import Button from '@mui/material/Button';
+import { useQuery } from '@apollo/client';
+import { QUERY_ALL_USERS } from '../utils/queries';
 // page to view a single piece of art
 
-function SinglePiece() {
+const currURL_id = window.location.href.split('/')[4];
+console.log(currURL_id);
 
+export default function SinglePiece() {
+  const { data } = useQuery(QUERY_ALL_USERS);
+  if (data) {
+    // all pieces array
+    const piecesArr = [];
+    console.log(piecesArr);
+    // get array of all Users
+    let dataUsers = data.Users;
+    console.log(dataUsers);
+    for (let i = 0; i < dataUsers.length; i++) {
+      const user = data.Users[i];
+      console.log(user);
+      const userPieces = data.Users[i].pieces;
+      console.log(userPieces);
+      for (let j = 0; j < userPieces.length; j++) {
+        console.log(user.pieces);
+        piecesArr.push(user.pieces[j]);
+      }
+    }
+    console.log(piecesArr);
 
-    return(
-
-        <div className="">
+    //  SELECTED Piece array
+    const selectedPiece = [];
+    for (let i = 0; i < piecesArr.length; i++) {
+      if (piecesArr[i]._id === currURL_id) {
+        selectedPiece.push(piecesArr[i]);
+      }
+    }
+    console.log(selectedPiece);
+    return (
+      <div className="">
         <div className="container is-flex" id="">
-            {/* display piece pic */}
-            <div className="column is-7" id="">
-
-                <img className="image" src={test} alt="test"></img>
-
+          {/* display piece pic */}
+          <div className="column is-7" id="">
+            <img className="image" src={selectedPiece[0].link} alt="test"></img>
+          </div>
+          {/* info about piece */}
+          <div className="column is-5" id="">
+            <div className="" id="">
+              <h2 className="mt-1 mb-3 is-size-4" id="">
+                Artist's Name: {selectedPiece[0].artist}
+              </h2>
+              <br /> <br />
+              <Button variant="contained">Contact Owner To Purchase</Button>
+              {/* <h2 className="is-size-4" id="">
+                $49.99
+              </h2> */}
             </div>
-            {/* info about piece */}
-            <div className="column is-5" id="">
-
-                <div className="" id="">
-
-                    <h2 className="mt-1 mb-3 is-size-4" id="">Artist Name</h2>
-                    <br /> <br />
-                    <h2 className="is-size-4" id="">$49.99</h2>
-
-                </div>
-
-            </div>
-
+          </div>
         </div>
 
         <div className="container" id="">
-                    
-            <h2 className="" id="">Description</h2>
+          <h2 className="" id="">
+            {selectedPiece[0].description}
+          </h2>
 
-            <p className="" id="">Vivamus id fermentum lacus. Curabitur blandit eros libero, sit amet porttitor odio maximus at. Nunc ac volutpat diam. Maecenas eu erat placerat turpis eleifend sodales eu nec urna. Mauris mattis ex non consectetur hendrerit. Pellentesque vitae nisl vitae nulla tincidunt scelerisque. Nullam consectetur, mi quis aliquet finibus, erat tortor porttitor erat, quis aliquam ante tellus sit amet nibh. Nullam aliquam vehicula ipsum, eu pharetra metus molestie id. In hac habitasse platea dictumst. Mauris molestie id enim a tempus.</p>
-
+          <p className="" id="">
+            Vivamus id fermentum lacus. Curabitur blandit eros libero, sit amet
+            porttitor odio maximus at. Nunc ac volutpat diam. Maecenas eu erat
+            placerat turpis eleifend sodales eu nec urna. Mauris mattis ex non
+            consectetur hendrerit. Pellentesque vitae nisl vitae nulla tincidunt
+            scelerisque. Nullam consectetur, mi quis aliquet finibus, erat
+            tortor porttitor erat, quis aliquam ante tellus sit amet nibh.
+            Nullam aliquam vehicula ipsum, eu pharetra metus molestie id. In hac
+            habitasse platea dictumst. Mauris molestie id enim a tempus.
+          </p>
         </div>
-        </div>
-
+      </div>
     );
-};
-
-export default SinglePiece;
+  }
+}
