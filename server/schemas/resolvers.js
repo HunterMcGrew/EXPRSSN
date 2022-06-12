@@ -7,9 +7,10 @@ const resolvers = {
     Users: async () => {
       return User.find({}).populate({ path: "pieces", select: "-__v" })
     },
-    User: async (parent, {_id} ) => {
-      return User.findOne({_id}).populate({ path: "pieces", select: "-__v" })
-    },
+    // User: async (parent, args,context ) => {
+    //   console.log ('hi');
+    //   return User.findOne({_id}).populate({ path: "pieces", select: "-__v" })
+    // },
     me: async (parent, args, context) => {
       if (context.user) {
         return User.findOne({ _id: context.user._id });
