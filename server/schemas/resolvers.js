@@ -16,11 +16,17 @@ const resolvers = {
     Collections: async () => {
       return Collection.find({});
     },
-    User: async (parent, {_id} ) => {
-      return User.findOne({_id})
+    User: async (parent, args, context) => {
+      if (context.user) {
+        const user = await User.findById(context.user._id)
+
+        return user;
+      }
+
+      throw new AuthenticationError('Not logged in');
     },
-    Piece: async (parent, {_id} ) => {
-      return Piece.findOne({_id});
+    Pieces: async (parent, { _id }) => {
+      return await Product.findById(_id).populate('pieces');
     },
     Collection: async (parent, {_id} ) => {
       return Collection.findOne({_id});
