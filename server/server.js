@@ -33,13 +33,15 @@ if (process.env.NODE_ENV === "production") {
 app.post("/api/upload", async (req, res) => {
   try {
     const fileString = req.body.data;
+    const userData = req.body.input;
 
-    //this line is breaking 39-41
+    // taking upload response, uploading it to cloudinary
     const uploadedResponse = await cloudinary.uploader.upload(fileString, {
       upload_preset: "project3",
     });
 
     console.log(uploadedResponse);
+    console.log("userData", userData);
 
     // console.log(uploadedResponse);
     // uploadedResponse.url is what we need to push into our mongoDB through GraphQL

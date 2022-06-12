@@ -79,7 +79,7 @@ console.log("fileInputState", fileInputState);
 
             await fetch("/api/upload", {
                 method: "POST",
-                body: JSON.stringify({ data: base64EncodedImage }),
+                body: JSON.stringify({ data: base64EncodedImage, input: userInput }),
                 headers: { "Content-type" : "application/json" }
             })
 

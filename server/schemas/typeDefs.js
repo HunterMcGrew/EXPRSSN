@@ -13,6 +13,7 @@ const typeDefs = gql`
     _id: ID!
     name: String!
     description: String!
+    artist: String!
     image: String!
     link: String!
     category: [Category]
