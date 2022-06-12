@@ -1,10 +1,14 @@
 const express = require("express");
-const { ApolloServer } = require("apollo-server-express");
+const { ApolloServer, UserInputError } = require("apollo-server-express");
 const path = require("path");
 // auth middleware for tokens -- payload: { username, email, _id }
 const { authMiddleware } = require("./utils/auth");
+const mongoose = require('mongoose');
 const { cloudinary } = require("./utils/cloudinary");
-const { Piece } = require("../server/models/Piece");
+const parseJwt = require("./utils/decode");
+const User = require("./models/User");
+const Collection = require("./models/Collection");
+const Piece = require("./models/Piece");
 
 const { typeDefs, resolvers } = require("./schemas");
 const db = require("./config/connection");
@@ -17,6 +21,7 @@ const server = new ApolloServer({
   // use authMiddleware
   context: authMiddleware,
 });
+
 
 app.use(express.urlencoded({ limit: "50mb", extended: true }));
 app.use(express.json({ limit: "50mb" }));
@@ -32,8 +37,15 @@ if (process.env.NODE_ENV === "production") {
 // uploads image to cloudinary
 app.post("/api/upload", async (req, res) => {
   try {
+    // req.body.data is data from the picture we are uploading
     const fileString = req.body.data;
-    const userData = req.body.input;
+    // req.body.input is data from the form we have them fill out
+    // piece name, description, etc...
+    const inputData = req.body.input;
+    // jwt token -- we need to decode it
+    const userData = req.body.user;
+    // decoded userData so we can see email, username, _id
+    const decoded = parseJwt(userData);
 
     // taking upload response, uploading it to cloudinary
     const uploadedResponse = await cloudinary.uploader.upload(fileString, {
@@ -41,11 +53,78 @@ app.post("/api/upload", async (req, res) => {
     });
 
     console.log(uploadedResponse);
+    console.log("inputData", inputData);
     console.log("userData", userData);
+    console.log("decoded", decoded);
 
-    // console.log(uploadedResponse);
     // uploadedResponse.url is what we need to push into our mongoDB through GraphQL
     console.log("uploadedResponse URL", uploadedResponse.url);
+    
+      const addPiece = await User.findOneAndUpdate(
+          { _id: decoded.data._id },
+          // pushes reactions array 
+          { $push: { pieces: { name: inputData.name, artist: inputData.artist, description: inputData.description, link: uploadedResponse.url }}},
+          { new: true, runValidators: true }
+      )
+      .populate({
+          path: "pieces",
+          select: "-__v"
+      })
+    
+    //get user by id, get all collections
+    // const userCollections = await User.findOneAndUpdate({ _id: decoded.data._id })
+    // .populate({path: "collections", select: "-__v"});
+
+    // if it doesn't already exist make a new one
+    // if (userCollections.collections !== inputData.collection) {
+    //   const newCollection = await Collection.create({ name: inputData.collection, artist: inputData.artist, description: inputData.description })
+    //   .then(({ name }) => {
+    //     return User.findOneAndUpdate(
+    //       { _id: decoded.data._id },
+    //       { $push: { collections: name }},
+    //       { new: true, runValidators: true }
+    //     )
+    //   }
+    //   );
+    // } else {
+    //   // if it does exist findOneAndUpdate
+    //   const existingCollection = await Collection.findOneAndUpdate(
+    //     { name: inputData.collection },
+    //     { $push: {piece: {name: inputData.name, artist: inputData.artist, description: inputData.description, link: uploadedResponse.url } } },
+    //     { new: true, runValidators: true }
+    //     .then(({ name }) => {
+    //       console.log("name", name);
+    //       return User.findOneAndUpdate(
+    //         { _id: decoded.data._id },
+    //         { $push: { collections: name }},
+    //         { new: true, runValidators: true }
+    //       )
+    //     }
+    //   ));
+    // };
+    
+
+    // const pushUser = await User.find(
+    //   { _id: decoded.data._id },
+    //   { $push: {collections: newCollection || existingCollection}}
+      
+    // );  
+    
+
+    // const collection = Collection.find({name: inputData.collection});
+
+    // find the user that's uplaoding context from JWT ({_id })
+
+    // check for collection name if exists
+    // if it doesnt exist create one
+
+    // URL from uploadedResponse.url and set/w/e it into piece 
+
+    // that piece is in the collection
+
+    // the collection is set into user_collection
+
+
 
     //bring in the model and do the change heres
     // need to change our model, typedefs, and mutation to include a "createdAt"

@@ -33,6 +33,9 @@ function Upload() {
     // state for typed form info
     const [userInput, setUserInput] = useState({ name: "", description: "", artist: "", collection: "" });
 
+    const userContext = React.createContext('_id');
+
+
     const handleFileInputChange = (event) => {
         event.preventDefault();
         // allows for multiple files to be uploaded if said .files[0]
@@ -41,7 +44,6 @@ function Upload() {
         
         previewFile(file);
     
-        // if we want to preview file on page 6:45 YT
     };
 
     const previewFile = (file) => {
@@ -75,13 +77,16 @@ console.log("fileInputState", fileInputState);
     const uploadImage = async (base64EncodedImage) => {
         // function to upload image here
         // console.log(base64EncodedImage);
+        let token = localStorage.getItem("id_token");
         try {
 
             await fetch("/api/upload", {
                 method: "POST",
-                body: JSON.stringify({ data: base64EncodedImage, input: userInput }),
+                body: JSON.stringify({ data: base64EncodedImage, input: userInput, user: token }),
                 headers: { "Content-type" : "application/json" }
             })
+            // on successfull upload change window location
+            window.location.replace("/");
 
         } catch (err) {
             if (err) throw err;

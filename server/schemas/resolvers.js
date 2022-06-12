@@ -28,6 +28,12 @@ const resolvers = {
     Category: async (parent, {_id} ) => {
       return Category.findOne({_id});
     },
+    me: async (parent, args, context) => {
+      if (context.user) {
+        return User.findOne({ _id: context.user._id });
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
 
   },
   Mutation: {
@@ -87,7 +93,10 @@ const resolvers = {
       throw new AuthenticationError("You need to be logged in!");
     },
 
-    addPiece: async (parent, { name, description, link, collectionId }, context) => {
+    addPiece: async (parent, { name, description, artist, link, collection }, context) => {
+      // const findMe = await User.findOne({ _id: context.user._id });
+
+      
       const piece = await Piece.create({ name, description, link });
 
       if (context.user) {

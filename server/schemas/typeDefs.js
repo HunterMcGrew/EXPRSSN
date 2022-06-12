@@ -47,6 +47,7 @@ const typeDefs = gql`
     Piece(_id: ID!): Piece
     Category(_id: ID!): Category
     Collection(_id: ID!): Collection
+    me: User
 
   }
 

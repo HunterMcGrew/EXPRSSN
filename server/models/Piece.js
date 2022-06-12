@@ -16,9 +16,9 @@ const pieceSchema = new Schema({
   description: {
     type: String,
   },
-  image: {
-    type: String,
-  },
+  // image: {
+  //   type: String,
+  // },
   // will be HTTP from cloudinary
   link: {
     type: String,
@@ -27,10 +27,11 @@ const pieceSchema = new Schema({
     type: Date,
     default: Date.now,
   },
-  category: {
-    type: Schema.Types.ObjectId,
-    ref: 'Category',
-  },
+  userId: [],
+  // category: {
+  //   type: Schema.Types.ObjectId,
+  //   ref: 'Category',
+  // },
 });
 
 const Piece = mongoose.model('piece', pieceSchema);
