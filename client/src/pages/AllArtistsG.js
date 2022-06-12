@@ -19,6 +19,7 @@ import { IconButton, TextField } from '@mui/material';
 import { collectFields } from 'graphql/execution/execute';
 import { QUERY_ALL_USERS } from '../utils/queries';
 import { useQuery } from '@apollo/client';
+import { Link as NewLink } from 'react-router-dom';
 
 const theme = createTheme();
 
@@ -100,7 +101,7 @@ export default function Album() {
                 color="text.primary"
                 gutterBottom
               >
-                All Collections
+                All Artists
               </Typography>
               <Typography
                 variant="h5"
@@ -116,8 +117,10 @@ export default function Album() {
                 spacing={2}
                 justifyContent="center"
               >
-                <Button variant="contained">Collections</Button>
-                <Button variant="outlined">Artists</Button>
+                <Button variant="outlined">
+                  <NewLink to="/explore">Collections</NewLink>
+                </Button>
+                <Button variant="contained">Artists</Button>
               </Stack>
             </Container>
           </Box>
@@ -131,7 +134,7 @@ export default function Album() {
             <Grid container spacing={4}>
               {dataFiltered.map((collection) => (
                 <Grid item key={collection._id} xs={12} sm={6} md={3}>
-                  <Link to={{ pathname: `/single-piece/${collection._id}` }}>
+                  <NewLink to={`/single-piece/${collection._id}`}>
                     <Card
                       sx={{
                         height: '100%',
@@ -155,7 +158,7 @@ export default function Album() {
                         <Typography>{collection.description}</Typography>
                       </CardContent>
                     </Card>
-                  </Link>
+                  </NewLink>
                 </Grid>
               ))}
             </Grid>

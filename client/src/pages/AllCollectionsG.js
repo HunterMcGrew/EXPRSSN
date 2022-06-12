@@ -19,57 +19,9 @@ import { IconButton, TextField } from '@mui/material';
 import { collectFields } from 'graphql/execution/execute';
 import { QUERY_ALL_USERS } from '../utils/queries';
 import { useQuery } from '@apollo/client';
+import { Link as NewLink } from 'react-router-dom';
 
 const theme = createTheme();
-
-// SAMPLE seed data for the collection
-const collectionData = [
-  {
-    name: 'heading 1',
-    value: '1',
-    image: 'https://source.unsplash.com/random',
-  },
-  {
-    name: 'heading 2',
-    value: '2',
-    image: 'https://source.unsplash.com/random',
-  },
-  {
-    name: 'heading 3',
-    value: '3',
-    image: 'https://source.unsplash.com/random',
-  },
-  {
-    name: 'heading 4',
-    value: '4',
-    image: 'https://source.unsplash.com/random',
-  },
-  {
-    name: 'heading 5',
-    value: '5',
-    image: 'https://source.unsplash.com/random',
-  },
-  {
-    name: 'heading 6',
-    value: '6',
-    image: 'https://source.unsplash.com/random',
-  },
-  {
-    name: 'heading 7',
-    value: '7',
-    image: 'https://source.unsplash.com/random',
-  },
-  {
-    name: 'heading 8',
-    value: '8',
-    image: 'https://source.unsplash.com/random',
-  },
-  {
-    name: 'heading 9',
-    value: '9',
-    image: 'https://source.unsplash.com/random',
-  },
-];
 
 //  The actual search bar HTML element
 const SearchBar = ({ setSearchQuery }) => (
@@ -162,7 +114,9 @@ export default function Album() {
                 justifyContent="center"
               >
                 <Button variant="contained">Collections</Button>
-                <Button variant="outlined">Artists</Button>
+                <Button variant="outlined">
+                  <NewLink to="/artists">Artists</NewLink>
+                </Button>
               </Stack>
             </Container>
           </Box>
@@ -176,7 +130,7 @@ export default function Album() {
             <Grid container spacing={4}>
               {dataFiltered.map((collection) => (
                 <Grid item key={collection._id} xs={12} sm={6} md={3}>
-                  <Link to={`/products/${collection._id}`}>
+                  <NewLink to={`/single-piece/${collection._id}`}>
                     <Card
                       sx={{
                         height: '100%',
@@ -200,7 +154,7 @@ export default function Album() {
                         <Typography>{collection.description}</Typography>
                       </CardContent>
                     </Card>
-                  </Link>
+                  </NewLink>
                 </Grid>
               ))}
             </Grid>
