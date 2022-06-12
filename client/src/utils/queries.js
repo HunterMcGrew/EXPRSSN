@@ -14,11 +14,13 @@ export const QUERY_ALL_USERS = gql`
 query QUERY_ALL_USERS {
   Users {
     _id
+    username
+    email
     pieces {
       _id
       name
-      artist
       description
+      artist
       link
     }
   }
@@ -85,67 +87,20 @@ query QUERY_ALL_CATEGORIES {
 // GET SINGLE QUERIES
 
 export const QUERY_USER = gql`
-query QUERY_USER($id: ID!) {
-    User(_id: $id) {
-      _id
-      username
-      email
-      password
-      collections {
-        _id
-        name
-        description
-        pieces {
-          _id
-          name
-          description
-          image
-          category {
-            _id
-            name
-            description
-          }
-        }
-      }
-    }
-  }
-`;
-
-export const QUERY_PIECE = gql`
-query QUERY_PIECE($id: ID!) {
-    Piece(_id: $id) {
+query QUERY_USERS($id: ID!) {
+  User(_id: $id) {
+    _id
+    username
+    email
+    pieces {
       _id
       name
       description
-      image
-      category {
-        _id
-        name
-        description
-      }
+      artist
+      link
     }
   }
-`;
-
-export const QUERY_COLLECTION = gql`
-query QUERY_COLLECTION($id: ID!) {
-    Collection(_id: $id) {
-      _id
-      name
-      description
-      pieces {
-        _id
-        name
-        description
-        image
-        category {
-          _id
-          name
-          description
-        }
-      }
-    }
-  }
+}
   
 `;
 
