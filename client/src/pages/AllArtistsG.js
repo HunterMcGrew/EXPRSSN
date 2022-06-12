@@ -1,7 +1,7 @@
 import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
+import { useState } from 'react';
 import Button from '@mui/material/Button';
-import CameraIcon from '@mui/icons-material/PhotoCamera';
+import SearchIcon from '@mui/icons-material/Search';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -15,36 +15,96 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+import { IconButton, TextField } from '@mui/material';
+import { collectFields } from 'graphql/execution/execute';
 
 const theme = createTheme();
 
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+// SAMPLE seed data for the collection
+const collectionData = [
+  {
+    name: 'heading 1',
+    value: '1',
+    image: 'https://source.unsplash.com/random',
+  },
+  {
+    name: 'heading 2',
+    value: '2',
+    image: 'https://source.unsplash.com/random',
+  },
+  {
+    name: 'heading 3',
+    value: '3',
+    image: 'https://source.unsplash.com/random',
+  },
+  {
+    name: 'heading 4',
+    value: '4',
+    image: 'https://source.unsplash.com/random',
+  },
+  {
+    name: 'heading 5',
+    value: '5',
+    image: 'https://source.unsplash.com/random',
+  },
+  {
+    name: 'heading 6',
+    value: '6',
+    image: 'https://source.unsplash.com/random',
+  },
+  {
+    name: 'heading 7',
+    value: '7',
+    image: 'https://source.unsplash.com/random',
+  },
+  {
+    name: 'heading 8',
+    value: '8',
+    image: 'https://source.unsplash.com/random',
+  },
+  {
+    name: 'heading 9',
+    value: '9',
+    image: 'https://source.unsplash.com/random',
+  },
+];
+
+//  The actual search bar HTML element
+const SearchBar = ({ setSearchQuery }) => (
+  <form style={{ display: 'flex', justifyContent: 'center' }}>
+    <TextField
+      id="search-bar"
+      className="text"
+      onInput={(e) => {
+        setSearchQuery(e.target.value);
+      }}
+      label="Enter a collection name"
+      variant="outlined"
+      placeholder="Search..."
+      size="small"
+    />
+    <IconButton type="submit" aria-label="search">
+      <SearchIcon style={{ fill: 'blue' }} />
+    </IconButton>
+  </form>
+);
+
+// The search bar LOGIC
+const filterData = (query, data) => {
+  if (!query) {
+    return data;
+  } else {
+    return data.filter((d) => d.value.includes(query));
+  }
+};
 
 export default function Album() {
+  const [searchQuery, setSearchQuery] = useState('');
+  const dataFiltered = filterData(searchQuery, collectionData);
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <AppBar position="relative">
-        <Toolbar>
-          <CameraIcon sx={{ mr: 2 }} />
-          <Typography variant="h6" color="inherit" noWrap>
-            Album layout
-          </Typography>
-        </Toolbar>
-      </AppBar>
+
       <main>
         {/* Hero unit */}
         <Box
@@ -70,9 +130,7 @@ export default function Album() {
               color="text.secondary"
               paragraph
             >
-              Something short and leading about the collection below—its
-              contents, the creator, etc. Make it short and sweet, but not too
-              short so folks don&apos;t simply skip over it entirely.
+              Search for some of your favorite collections
             </Typography>
             <Stack
               sx={{ pt: 4 }}
@@ -80,16 +138,21 @@ export default function Album() {
               spacing={2}
               justifyContent="center"
             >
-              <Button variant="contained">Main call to action</Button>
-              <Button variant="outlined">Secondary action</Button>
+              <Button variant="contained">Collections</Button>
+              <Button variant="outlined">Artists</Button>
             </Stack>
           </Container>
         </Box>
-        <Container sx={{ py: 8 }} maxWidth="md">
+        <Container sx={{ py: 4 }}>
           {/* End hero unit */}
+
+          <SearchBar
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+          />
           <Grid container spacing={4}>
-            {cards.map((card) => (
-              <Grid item key={card} xs={12} sm={6} md={4}>
+            {dataFiltered.map((collection) => (
+              <Grid item key={collection.value} xs={12} sm={6} md={3}>
                 <Card
                   sx={{
                     height: '100%',
@@ -101,14 +164,14 @@ export default function Album() {
                     component="img"
                     sx={{
                       // 16:9
-                      pt: '56.25%',
+                      pt: '1.25%',
                     }}
                     image="https://source.unsplash.com/random"
                     alt="random"
                   />
                   <CardContent sx={{ flexGrow: 1 }}>
                     <Typography gutterBottom variant="h5" component="h2">
-                      Heading
+                      {collection.name}
                     </Typography>
                     <Typography>
                       This is a media card. You can use this section to describe
@@ -126,7 +189,7 @@ export default function Album() {
         </Container>
       </main>
       {/* Footer */}
-      <Box sx={{ bgcolor: 'background.paper', p: 6 }} component="footer">
+      {/* <Box sx={{ bgcolor: 'background.paper', p: 6 }} component="footer">
         <Typography variant="h6" align="center" gutterBottom>
           Footer
         </Typography>
@@ -139,7 +202,7 @@ export default function Album() {
           Something here to give the footer a purpose!
         </Typography>
         <Copyright />
-      </Box>
+      </Box> */}
       {/* End footer */}
     </ThemeProvider>
   );
