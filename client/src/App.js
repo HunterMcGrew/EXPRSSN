@@ -15,7 +15,6 @@ import SinglePiece from './pages/Single-Piece';
 import Dashboard from './pages/Dashboard';
 import About from './pages/About';
 import NavBar from './components/NavBar';
-
 import Footer from './components/Footer';
 import MobileNav from './components/MobileNav';
 import Artists from './pages/AllArtistsG';
@@ -62,7 +61,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Login/>} />
           <Route path="/signup" element={<SignUp />} />
-
+          <Route path="/login" element={<Login /> } />
           <Route path="/explore" element={<AllCollections />} />
           <Route path="/single-piece/:id" element={<SinglePiece />} />
           {/* <Route path="/collection" element={<Collection /> } /> */}
