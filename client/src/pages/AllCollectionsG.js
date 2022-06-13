@@ -57,23 +57,23 @@ export default function Album() {
   const { data } = useQuery(QUERY_ALL_USERS);
   if (data) {
     const piecesArr = [];
-    console.log(piecesArr);
-    console.log(data.Users);
+    // console.log(piecesArr);
+    // console.log(data.Users);
     let dataUsers = data.Users;
 
     for (let i = 0; i < dataUsers.length; i++) {
       const user = data.Users[i];
-      console.log(user);
+      // console.log(user);
       const userPieces = data.Users[i].pieces;
-      console.log(userPieces);
+      // console.log(userPieces);
       for (let j = 0; j < userPieces.length; j++) {
         console.log(user.pieces);
         piecesArr.push(user.pieces[j]);
       }
     }
-    console.log(piecesArr);
+    // console.log(piecesArr);
     const dataFiltered = filterData(searchQuery, piecesArr);
-    console.log(dataFiltered);
+    // console.log(dataFiltered);
     // console.log('all users: ' + allUserPieces);
 
     return (
