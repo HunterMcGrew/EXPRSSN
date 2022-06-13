@@ -1,11 +1,20 @@
-const { AuthenticationError } = require("apollo-server-express");
-const { User, Collection, Piece } = require("../models");
-const { signToken } = require("../utils/auth");
-const bcrypt = require("bcrypt");
+const { AuthenticationError } = require('apollo-server-express');
+const { User } = require('../models');
+const { signToken } = require('../utils/auth');
+const bcrypt = require('bcrypt');
 const resolvers = {
   Query: {
     Users: async () => {
-      return User.find({});
+      return User.find({}).populate({ path: 'pieces', select: '-__v' });
+    },
+    User: async (parent, { _id }) => {
+      return User.findOne({ _id }).populate({ path: 'pieces', select: '-__v' });
+    },
+    me: async (parent, args, context) => {
+      if (context.user) {
+        return User.findOne({ _id: context.user._id });
+      }
+      throw new AuthenticationError('You need to be logged in!');
     },
   },
   Mutation: {
@@ -17,8 +26,16 @@ const resolvers = {
       // Return an `Auth` object that consists of the signed token and user's information
       return { token, user };
     },
+    removePiece: async (parent, args, context) => {
+      const deletedpiece = User.findOneAndUpdate(
+        { _id: context.user._id },
+        { $pull: { pieces: {name: args.name } } },
+        { new: true }
+      );
+      return deletedpiece
+    },
     login: async (parent, { email, password }) => {
-      // Look up the user by the provided email address. Since the `email` field is unique, we know that only one person will exist with that email
+      console.log('Login resolver revoked');
       const user = await User.findOne({ email });
 
       console.log(password);
@@ -27,7 +44,7 @@ const resolvers = {
 
       // If there is no user with that email address, return an Authentication error stating so
       if (!user) {
-        throw new AuthenticationError("No user found with this email address");
+        throw new AuthenticationError('No user found with this email address');
       }
 
       // If there is a user found, execute the `isCorrectPassword` instance method and check if the correct password was provided
@@ -35,7 +52,7 @@ const resolvers = {
 
       // If the password is incorrect, return an Authentication error stating so
       if (!correctPw) {
-        throw new AuthenticationError("Incorrect credentials");
+        throw new AuthenticationError('Incorrect credentials');
       }
 
       // If email and password are correct, sign user into the application with a JWT
@@ -44,55 +61,7 @@ const resolvers = {
       // Return an `Auth` object that consists of the signed token and user's information
       return { token, user };
     },
-
-    addCollection: async (parent, { name, description, userId }, context) => {
-      const collection = await Collection.create({ name, description });
-
-      if (context.user) {
-        return User.findOneAndUpdate(
-          { _id: userId },
-          {
-            $addToSet: { collections: collection.id },
-          },
-          {
-            new: true,
-            runValidators: true,
-          }
-        );
-      }
-      // If user attempts to execute this mutation and isn't logged in, throw an error
-      throw new AuthenticationError("You need to be logged in!");
-    },
-
-    addPiece: async (parent, { name, description, collectionId }, context) => {
-      const piece = await Piece.create({ name, description });
-
-      if (context.user) {
-        return Collection.findOneAndUpdate(
-          { _id: collectionId },
-          {
-            $addToSet: { pieces: piece.id },
-          },
-          {
-            new: true,
-            runValidators: true,
-          }
-        );
-      }
-      // If user attempts to execute this mutation and isn't logged in, throw an error
-      throw new AuthenticationError("You need to be logged in!");
-    },
-
-   
   },
-  // createVote: async (parent, { _id, techNum }) => {
-  //   const vote = await Matchup.findOneAndUpdate(
-  //     { _id },
-  //     { $inc: { [`tech${techNum}_votes`]: 1 } },
-  //     { new: true }
-  //   );
-  //   return vote;
-  // },
 };
 
 module.exports = resolvers;

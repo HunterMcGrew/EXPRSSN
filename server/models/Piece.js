@@ -2,25 +2,43 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-const pieceSchema = new Schema({
+const formatDate = (date) => {
+  const newDate = new Date(date);
+  return newDate.toUTCString();
+};
+
+const piecesSchema = new Schema({
+
   name: {
-    type: String,
-    required: true,
-    trim: true,
+      type: String,
+      required: true,
+      maxLength: 280
   },
   description: {
+      type: String,
+      required: true,
+  },
+  artist: {
     type: String,
+    required: false,
   },
-  image: {
+  link: {
     type: String,
+    required: true,
   },
-  category: {
-    type: Schema.Types.ObjectId,
-    ref: 'Category',
-
+  createdAt: {
+      type: Date,
+      default: Date.now,
+      get: formatDate
+  }
+},
+{
+  toJSON: {
+      getters: true
   },
+  id: false,
 });
 
-const Piece = mongoose.model('piece', pieceSchema);
+const Piece = mongoose.model('piece', piecesSchema);
 
 module.exports = Piece;
