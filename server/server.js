@@ -50,10 +50,10 @@ app.post("/api/upload", async (req, res) => {
       upload_preset: "project3",
     });
 
-    console.log(uploadedResponse);
-    console.log("inputData", inputData);
-    console.log("userData", userData);
-    console.log("decoded", decoded);
+    // console.log(uploadedResponse);
+    // console.log("inputData", inputData);
+    // console.log("userData", userData);
+    // console.log("decoded", decoded);
 
     // uploadedResponse.url is what we need to push into our mongoDB through GraphQL
     console.log("uploadedResponse URL", uploadedResponse.url);
