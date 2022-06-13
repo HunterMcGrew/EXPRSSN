@@ -20,16 +20,20 @@ const server = new ApolloServer({
   context: authMiddleware,
 });
 
+const buildPath = path.join(__dirname, '..', 'build');
+app.use(express.static(buildPath));
+
+
 
 app.use(express.urlencoded({ limit: "50mb", extended: true }));
 app.use(express.json({ limit: "50mb" }));
 
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../client/build")));
-  app.get("/*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../client/build/index.html"));
-  });
-}
+// if (process.env.NODE_ENV === "production") {
+//   app.use(express.static(path.join(__dirname, "../client/build")));
+//   app.get("/*", (req, res) => {
+//     res.sendFile(path.join(__dirname, "../client/build/index.html"));
+//   });
+// }
 
 // post route for /upload page
 
