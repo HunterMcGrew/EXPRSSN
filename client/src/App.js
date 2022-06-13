@@ -12,6 +12,7 @@ import Login from './pages/Login';
 import NotFound from './pages/NotFound';
 import SignUp from './pages/SignUp';
 import SinglePiece from './pages/Single-Piece';
+import Dashboard from './pages/Dashboard';
 import About from './pages/About';
 import NavBar from './components/NavBar';
 
@@ -58,8 +59,7 @@ function App() {
         <NavBar toggle={toggle} />
 
         <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Login/>} />
           <Route path="/signup" element={<SignUp />} />
 
           <Route path="/explore" element={<AllCollections />} />

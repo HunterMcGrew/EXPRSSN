@@ -26,6 +26,14 @@ const resolvers = {
       // Return an `Auth` object that consists of the signed token and user's information
       return { token, user };
     },
+    removePiece: async (parent, args, context) => {
+      const deletedpiece = User.findOneAndUpdate(
+        { _id: context.user._id },
+        { $pull: { pieces: {name: args.name } } },
+        { new: true }
+      );
+      return deletedpiece
+    },
     login: async (parent, { email, password }) => {
       console.log('Login resolver revoked');
       const user = await User.findOne({ email });

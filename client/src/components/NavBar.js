@@ -29,8 +29,8 @@ const NavBar = ({ toggle }) => {
           Upload
         </a>
 
-        <a style={{ color: "black" }} href="/login" className="mr-3 ml-3">
-          Login
+        <a style={{ color: "black" }} href="/profile" className="mr-3 ml-3">
+          Profile
         </a>
       </nav>
       {/* MobileNav toggle */}
