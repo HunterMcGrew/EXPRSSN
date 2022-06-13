@@ -62,6 +62,8 @@ export default function SignUp() {
         password: '',
       });
 
+      window.location.replace("/profile");
+
     } catch (err) {
       if (err) throw err;
       console.log(err);

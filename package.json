@@ -2,6 +2,7 @@
   "name": "exprssn",
   "version": "1.0.0",
   "description": "",
+  "homepage": "https://quiet-reaches-45814.herokuapp.com/",
   "main": "server/server.js",
   "scripts": {
     "start": "node server/server.js --ignore client",
