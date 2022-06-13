@@ -15,7 +15,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Link from "@mui/material/Link";
-import parseJwt from "../utils/decode";
+import { Link as NewLink } from 'react-router-dom';
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useQuery,  useMutation  } from "@apollo/client";
 import { QUERY_ME } from "../utils/queries";
@@ -110,7 +110,7 @@ export default function AddCollection() {
             
               {myPieces.map((collection) => (
                 <Grid item key={collection.name} xs={12} sm={6} md={3}>
-                  <Link to={`/products/${collection._id}`}>
+                  <NewLink to={`/edit/${collection._id}`}>
                     <Card
                       sx={{
                         height: "100%",
@@ -140,7 +140,7 @@ export default function AddCollection() {
                         </Button>
                       </CardContent>
                     </Card>
-                  </Link>
+                  </NewLink>
                 </Grid>
               ))}
             </Grid>

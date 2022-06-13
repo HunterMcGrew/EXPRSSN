@@ -64,20 +64,12 @@ export default function SinglePiece() {
           </div>
 
           <div className="container" id="">
-            <h2 className="" id="">
-              {selectedPiece[0].description}
+            <h2 className="is-size-4" id="">
+              Description
             </h2>
 
-            <p className="" id="">
-              Vivamus id fermentum lacus. Curabitur blandit eros libero, sit
-              amet porttitor odio maximus at. Nunc ac volutpat diam. Maecenas eu
-              erat placerat turpis eleifend sodales eu nec urna. Mauris mattis
-              ex non consectetur hendrerit. Pellentesque vitae nisl vitae nulla
-              tincidunt scelerisque. Nullam consectetur, mi quis aliquet
-              finibus, erat tortor porttitor erat, quis aliquam ante tellus sit
-              amet nibh. Nullam aliquam vehicula ipsum, eu pharetra metus
-              molestie id. In hac habitasse platea dictumst. Mauris molestie id
-              enim a tempus.
+            <p className="is-size-5" id="">
+            {selectedPiece[0].description}
             </p>
           </div>
         </div>

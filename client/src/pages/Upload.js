@@ -6,26 +6,6 @@ import { ADD_PIECE } from '../utils/mutations';
 function Upload() {
 
 
-    const [image, setImage ] = useState("");
-    const [ url, setUrl ] = useState("");
-    const uploadImageee = (event) => {
-        event.preventDefault();
-    const data = new FormData()
-    data.append("file", image)
-    data.append("upload_preset", "project3")
-    data.append("cloud_name","dyktr7yvk")
-    fetch(" https://api.cloudinary.com/v1_1/dyktr7yvk/image/upload ",{
-    method:"post",
-    body: data
-    })
-    .then(resp => resp.json())
-    .then(data => {
-    setUrl(data.url)
-    })
-
-
-    .catch(err => console.log(err))
-    }
     // state for file being uploaded 
     const [fileInputState, setFileInputState] = useState("");
     const [selectedFile, setSelectedFile] = useState("");
@@ -33,7 +13,6 @@ function Upload() {
     // state for typed form info
     const [userInput, setUserInput] = useState({ name: "", description: "", artist: "",  });
 
-    const userContext = React.createContext('_id');
 
 
     const handleFileInputChange = (event) => {

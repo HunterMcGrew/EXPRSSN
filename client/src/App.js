@@ -24,6 +24,7 @@ import AllCollections from './pages/AllCollectionsG';
 import Collection from './pages/Piece';
 // import Collection from "./pages/Collection";
 import Upload from './pages/Upload';
+import Edit from "./pages/Edit";
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -70,6 +71,7 @@ function App() {
           <Route path="/artists" element={<Artists />} />
           <Route path="/about" element={<About />} />
           <Route path="/collection" element={<Collection />} />
+          <Route path="/edit/:id" element={<Edit /> } />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
