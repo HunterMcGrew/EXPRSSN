@@ -2,38 +2,43 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-const pieceSchema = new Schema({
+const formatDate = (date) => {
+  const newDate = new Date(date);
+  return newDate.toUTCString();
+};
+
+const piecesSchema = new Schema({
+
   name: {
-    type: String,
-    required: true,
-    trim: true,
+      type: String,
+      required: true,
+      maxLength: 280
+  },
+  description: {
+      type: String,
+      required: true,
   },
   artist: {
     type: String,
     required: false,
-    trim: true,
   },
-  description: {
-    type: String,
-  },
-  // image: {
-  //   type: String,
-  // },
-  // will be HTTP from cloudinary
   link: {
     type: String,
+    required: true,
   },
   createdAt: {
-    type: Date,
-    default: Date.now,
+      type: Date,
+      default: Date.now,
+      get: formatDate
+  }
+},
+{
+  toJSON: {
+      getters: true
   },
-  userId: [],
-  // category: {
-  //   type: Schema.Types.ObjectId,
-  //   ref: 'Category',
-  // },
+  id: false,
 });
 
-const Piece = mongoose.model('piece', pieceSchema);
+const Piece = mongoose.model('piece', piecesSchema);
 
 module.exports = Piece;

@@ -7,8 +7,6 @@ const mongoose = require('mongoose');
 const { cloudinary } = require("./utils/cloudinary");
 const parseJwt = require("./utils/decode");
 const User = require("./models/User");
-const Collection = require("./models/Collection");
-const Piece = require("./models/Piece");
 
 const { typeDefs, resolvers } = require("./schemas");
 const db = require("./config/connection");
@@ -34,7 +32,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // post route for /upload page
-// uploads image to cloudinary
+
 app.post("/api/upload", async (req, res) => {
   try {
     // req.body.data is data from the picture we are uploading

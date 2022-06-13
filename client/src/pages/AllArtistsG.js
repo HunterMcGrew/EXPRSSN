@@ -17,57 +17,11 @@ import Link from '@mui/material/Link';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { IconButton, TextField } from '@mui/material';
 import { collectFields } from 'graphql/execution/execute';
+import { QUERY_ALL_USERS } from '../utils/queries';
+import { useQuery } from '@apollo/client';
+import { Link as NewLink } from 'react-router-dom';
 
 const theme = createTheme();
-
-// SAMPLE seed data for the collection
-const collectionData = [
-  {
-    name: 'heading 1',
-    value: '1',
-    image: 'https://source.unsplash.com/random',
-  },
-  {
-    name: 'heading 2',
-    value: '2',
-    image: 'https://source.unsplash.com/random',
-  },
-  {
-    name: 'heading 3',
-    value: '3',
-    image: 'https://source.unsplash.com/random',
-  },
-  {
-    name: 'heading 4',
-    value: '4',
-    image: 'https://source.unsplash.com/random',
-  },
-  {
-    name: 'heading 5',
-    value: '5',
-    image: 'https://source.unsplash.com/random',
-  },
-  {
-    name: 'heading 6',
-    value: '6',
-    image: 'https://source.unsplash.com/random',
-  },
-  {
-    name: 'heading 7',
-    value: '7',
-    image: 'https://source.unsplash.com/random',
-  },
-  {
-    name: 'heading 8',
-    value: '8',
-    image: 'https://source.unsplash.com/random',
-  },
-  {
-    name: 'heading 9',
-    value: '9',
-    image: 'https://source.unsplash.com/random',
-  },
-];
 
 //  The actual search bar HTML element
 const SearchBar = ({ setSearchQuery }) => (
@@ -94,102 +48,124 @@ const filterData = (query, data) => {
   if (!query) {
     return data;
   } else {
-    return data.filter((d) => d.value.includes(query));
+    //  Search for the Artists Field
+    return data.filter((d) => d.artist.includes(query));
   }
 };
 
 export default function Album() {
   const [searchQuery, setSearchQuery] = useState('');
-  const dataFiltered = filterData(searchQuery, collectionData);
-  return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
+  const { data } = useQuery(QUERY_ALL_USERS);
+  if (data) {
+    // all pieces array
+    const piecesArr = [];
+    console.log(piecesArr);
+    // get array of all Users
+    let dataUsers = data.Users;
+    console.log(dataUsers);
 
-      <main>
-        {/* Hero unit */}
-        <Box
-          sx={{
-            bgcolor: 'background.paper',
-            pt: 8,
-            pb: 6,
-          }}
-        >
-          <Container maxWidth="sm">
-            <Typography
-              component="h1"
-              variant="h2"
-              align="center"
-              color="text.primary"
-              gutterBottom
-            >
-              All Collections
-            </Typography>
-            <Typography
-              variant="h5"
-              align="center"
-              color="text.secondary"
-              paragraph
-            >
-              Search for some of your favorite collections
-            </Typography>
-            <Stack
-              sx={{ pt: 4 }}
-              direction="row"
-              spacing={2}
-              justifyContent="center"
-            >
-              <Button variant="contained">Collections</Button>
-              <Button variant="outlined">Artists</Button>
-            </Stack>
+    // nested for loop to populate the array of pieces based on all users and their pieces
+    for (let i = 0; i < dataUsers.length; i++) {
+      const user = data.Users[i];
+      console.log(user);
+      const userPieces = data.Users[i].pieces;
+      console.log(userPieces);
+      for (let j = 0; j < userPieces.length; j++) {
+        console.log(user.pieces);
+        piecesArr.push(user.pieces[j]);
+      }
+    }
+    console.log(piecesArr);
+    const dataFiltered = filterData(searchQuery, piecesArr);
+    console.log(dataFiltered);
+    // console.log('all users: ' + allUserPieces);
+
+    return (
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+
+        <main>
+          {/* Hero unit */}
+          <Box
+            sx={{
+              bgcolor: 'background.paper',
+              pt: 8,
+              pb: 6,
+            }}
+          >
+            <Container maxWidth="sm">
+              <Typography
+                component="h1"
+                variant="h2"
+                align="center"
+                color="text.primary"
+                gutterBottom
+              >
+                All Artists
+              </Typography>
+              <Typography
+                variant="h5"
+                align="center"
+                color="text.secondary"
+                paragraph
+              >
+                Search for some of your favorite collections
+              </Typography>
+              <Stack
+                sx={{ pt: 4 }}
+                direction="row"
+                spacing={2}
+                justifyContent="center"
+              >
+                <Button variant="outlined">
+                  <NewLink to="/explore">Collections</NewLink>
+                </Button>
+                <Button variant="contained">Artists</Button>
+              </Stack>
+            </Container>
+          </Box>
+          <Container sx={{ py: 4 }}>
+            {/* End hero unit */}
+
+            <SearchBar
+              searchQuery={searchQuery}
+              setSearchQuery={setSearchQuery}
+            />
+            <Grid container spacing={4}>
+              {dataFiltered.map((collection) => (
+                <Grid item key={collection._id} xs={12} sm={6} md={3}>
+                  <NewLink to={`/single-piece/${collection._id}`}>
+                    <Card
+                      sx={{
+                        height: '100%',
+                        display: 'flex',
+                        flexDirection: 'column',
+                      }}
+                    >
+                      <CardMedia
+                        component="img"
+                        sx={{
+                          // 16:9
+                          pt: '1.25%',
+                        }}
+                        image={collection.link}
+                        alt="random"
+                      />
+                      <CardContent sx={{ flexGrow: 1 }}>
+                        <Typography gutterBottom variant="h5" component="h2">
+                          {collection.artist}
+                        </Typography>
+                        <Typography>{collection.description}</Typography>
+                      </CardContent>
+                    </Card>
+                  </NewLink>
+                </Grid>
+              ))}
+            </Grid>
           </Container>
-        </Box>
-        <Container sx={{ py: 4 }}>
-          {/* End hero unit */}
-
-          <SearchBar
-            searchQuery={searchQuery}
-            setSearchQuery={setSearchQuery}
-          />
-          <Grid container spacing={4}>
-            {dataFiltered.map((collection) => (
-              <Grid item key={collection.value} xs={12} sm={6} md={3}>
-                <Card
-                  sx={{
-                    height: '100%',
-                    display: 'flex',
-                    flexDirection: 'column',
-                  }}
-                >
-                  <CardMedia
-                    component="img"
-                    sx={{
-                      // 16:9
-                      pt: '1.25%',
-                    }}
-                    image="https://source.unsplash.com/random"
-                    alt="random"
-                  />
-                  <CardContent sx={{ flexGrow: 1 }}>
-                    <Typography gutterBottom variant="h5" component="h2">
-                      {collection.name}
-                    </Typography>
-                    <Typography>
-                      This is a media card. You can use this section to describe
-                      the content.
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button size="small">View</Button>
-                    <Button size="small">Edit</Button>
-                  </CardActions>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
-      </main>
-      {/* Footer */}
-      {/* <Box sx={{ bgcolor: 'background.paper', p: 6 }} component="footer">
+        </main>
+        {/* Footer */}
+        {/* <Box sx={{ bgcolor: 'background.paper', p: 6 }} component="footer">
         <Typography variant="h6" align="center" gutterBottom>
           Footer
         </Typography>
@@ -203,7 +179,62 @@ export default function Album() {
         </Typography>
         <Copyright />
       </Box> */}
-      {/* End footer */}
-    </ThemeProvider>
-  );
+        {/* End footer */}
+      </ThemeProvider>
+    );
+  } else {
+    return (
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+
+        <main>
+          {/* Hero unit */}
+          <Box
+            sx={{
+              bgcolor: 'background.paper',
+              pt: 8,
+              pb: 6,
+            }}
+          >
+            <Container maxWidth="sm">
+              <Typography
+                component="h1"
+                variant="h2"
+                align="center"
+                color="text.primary"
+                gutterBottom
+              >
+                All Collections
+              </Typography>
+              <Typography
+                variant="h5"
+                align="center"
+                color="text.secondary"
+                paragraph
+              >
+                Search for some of your favorite collections
+              </Typography>
+              <Stack
+                sx={{ pt: 4 }}
+                direction="row"
+                spacing={2}
+                justifyContent="center"
+              >
+                <Button variant="contained">Collections</Button>
+                <Button variant="outlined">Artists</Button>
+              </Stack>
+            </Container>
+          </Box>
+          <Container sx={{ py: 4 }}>
+            {/* End hero unit */}
+
+            <SearchBar
+              searchQuery={searchQuery}
+              setSearchQuery={setSearchQuery}
+            />
+          </Container>
+        </main>
+      </ThemeProvider>
+    );
+  }
 }

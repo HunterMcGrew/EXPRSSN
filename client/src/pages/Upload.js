@@ -86,7 +86,7 @@ console.log("fileInputState", fileInputState);
                 headers: { "Content-type" : "application/json" }
             })
             // on successfull upload change window location
-            window.location.replace("/");
+            window.location.replace("/profile");
 
         } catch (err) {
             if (err) throw err;
