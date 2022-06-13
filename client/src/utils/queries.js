@@ -33,10 +33,9 @@ query QUERY_ALL_USERS {
 // GET SINGLE QUERIES
 
 export const QUERY_USER = gql`
-query QUERY_USERS($id: ID!) {
-  User(_id: $id) {
-    _id
-    username
+{
+  User {
+   _id
     email
     pieces {
       _id
@@ -47,7 +46,21 @@ query QUERY_USERS($id: ID!) {
     }
   }
 }
-  
+`;
+export const QUERY_ME = gql`
+{
+  me {
+   _id
+    email
+    pieces {
+      _id
+      name
+      description
+      artist
+      link
+    }
+  }
+}
 `;
 
 // END SINGLE QUERIES

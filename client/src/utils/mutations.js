@@ -33,3 +33,19 @@ mutation ADD_PIECE($name: String!, $description: String!, $link: String!, $colle
     _id
   }
 }`;
+
+export const REMOVE_PIECE = gql`
+  mutation removePiece($name:ID!) {
+    removePiece(name:$name) {
+      email
+      username
+      pieces {
+        description
+        link
+        
+      }
+    }
+  }
+
+
+`;

@@ -32,7 +32,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // post route for /upload page
-// uploads image to cloudinary
+
 app.post("/api/upload", async (req, res) => {
   try {
     // req.body.data is data from the picture we are uploading

@@ -25,12 +25,12 @@ const NavBar = ({ toggle }) => {
           Explore
         </a>
 
-        <a style={{ color: "black" }} href="/add" className="mr-3 ml-3">
-          Add
+        <a style={{ color: "black" }} href="/upload" className="mr-3 ml-3">
+          Upload
         </a>
 
-        <a style={{ color: "black" }} href="/login" className="mr-3 ml-3">
-          Login
+        <a style={{ color: "black" }} href="/profile" className="mr-3 ml-3">
+          Profile
         </a>
       </nav>
       {/* MobileNav toggle */}

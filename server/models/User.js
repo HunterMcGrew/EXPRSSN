@@ -23,6 +23,7 @@ const piecesSchema = new Schema({
     type: String,
     required: false,
   },
+  
   link: {
     type: String,
     required: true,

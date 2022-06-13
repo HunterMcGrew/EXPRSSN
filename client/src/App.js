@@ -12,12 +12,14 @@ import Login from './pages/Login';
 import NotFound from './pages/NotFound';
 import SignUp from './pages/SignUp';
 import SinglePiece from './pages/Single-Piece';
-import Dashboard from './utils/pages/Dashboard';
+import Dashboard from './pages/Dashboard';
 import About from './pages/About';
 import NavBar from './components/NavBar';
+
 import Footer from './components/Footer';
 import MobileNav from './components/MobileNav';
 import Artists from './pages/AllArtistsG';
+import Profile from './pages/Profile';
 import AllCollections from './pages/AllCollectionsG';
 import Collection from './pages/Piece';
 // import Collection from "./pages/Collection";
@@ -57,16 +59,15 @@ function App() {
         <NavBar toggle={toggle} />
 
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Login/>} />
           <Route path="/signup" element={<SignUp />} />
 
           <Route path="/explore" element={<AllCollections />} />
           <Route path="/single-piece/:id" element={<SinglePiece />} />
           {/* <Route path="/collection" element={<Collection /> } /> */}
           <Route path="/upload" element={<Upload />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/artists" element={<Artists />} />
-          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/about" element={<About />} />
           <Route path="/collection" element={<Collection />} />
           <Route path="*" element={<NotFound />} />
