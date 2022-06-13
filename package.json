@@ -1,22 +1,20 @@
 {
-    "name": "exprssn",
-    "version": "1.0.0",
-    "description": "",
-    "homepage": "https://quiet-reaches-45814.herokuapp.com/",
-    "main": "server/server.js",
-    "scripts": {
-        "start-client": "react-scripts start",
-        "build": "react-scripts build && (cd server && yarn install)",
-        "test": "react-scripts test",
-        "eject": "react-scripts eject",
-        "start": "cd server && yarn start"
-    },
-    "author": "",
-    "license": "ISC",
-    "devDependencies": {
-      "concurrently": "^5.3.0"
-    },
-    "dependencies": {
-      "react-js-banner": "^0.6.0-beta3"
-    }
+  "name": "exprssn",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://quiet-reaches-45814.herokuapp.com/",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "install": "cd server && npm i && cd ../client && npm i",
+    "build": "cd client && npm run build"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^5.3.0"
+  },
+  "dependencies": {
+    "react-js-banner": "^0.6.0-beta3"
   }
+}
